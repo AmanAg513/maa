@@ -41,7 +41,7 @@ public class WelcomeScreenPresenterImpl implements WelcomeScreenPresenter{
             }
 
             @Override
-            public void onFailure(String error) {
+            public void onFailure() {
                 welcomeScreenView.showError("Failed");
                 welcomeScreenView.showProgressBar(false);
             }

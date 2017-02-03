@@ -50,7 +50,7 @@ public class RetrofitWelcomeScreenProvider implements WelcomeScreenProvider {
             @Override
             public void onFailure(Call<WelcomeScreenData> call, Throwable t) {
                 t.printStackTrace();
-//                welcomeScreenCallBack.onFailure("Unable  to Connect");
+                welcomeScreenCallBack.onFailure();
             }
         });
     }

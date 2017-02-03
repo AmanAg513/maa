@@ -9,5 +9,5 @@ import com.phoenix.codeutsava.maa.welcome_screen.model.data.WelcomeScreenData;
 public interface WelcomeScreenCallBack {
 
     void onSuccess(WelcomeScreenData welcomeScreenData);
-    void onFailure (String error);
+    void onFailure ();
 }

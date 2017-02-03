@@ -31,11 +31,11 @@ public class WelcomeScreenActivity extends Activity implements WelcomeScreenView
     @BindView(R.id.button_welcome)
     Button button;
 
-    @BindView(R.id.progressBar_welcome)
-    ProgressBar progressBar;
+//    @BindView(R.id.progressBar_welcome)
+//    ProgressBar progressBar;
 
-    @BindView(R.id.txt_progressBar)
-    ProgressBar txtProgressBar;
+//    @BindView(R.id.txt_progressBar)
+//    ProgressBar txtProgressBar;
 
     @BindView(R.id.img_welcome)
     ImageView imageView;
@@ -46,6 +46,9 @@ public class WelcomeScreenActivity extends Activity implements WelcomeScreenView
     private WelcomeScreenPresenter welcomeScreenPresenter;
     private ImageLoader imageLoader;
     private Context context;
+    private ProgressBar txtProgressBar;
+    private ProgressBar progressBar;
+
 //    private WelcomeScreenData welcomeScreenData;
 
 
@@ -57,6 +60,8 @@ public class WelcomeScreenActivity extends Activity implements WelcomeScreenView
 //        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         ButterKnife.bind(this);
 
+        txtProgressBar=(ProgressBar)findViewById(R.id.txt_progressBar);
+        progressBar=(ProgressBar)findViewById(R.id.progressBar_welcome);
         welcomeScreenPresenter = new WelcomeScreenPresenterImpl(this,
                 new RetrofitWelcomeScreenProvider());
         welcomeScreenPresenter.requestWelcomeData();
@@ -85,6 +90,6 @@ public class WelcomeScreenActivity extends Activity implements WelcomeScreenView
 
     @Override
     public void showError(String error) {
-        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+        Toast.makeText(WelcomeScreenActivity.this, error, Toast.LENGTH_SHORT).show();
     }
 }
