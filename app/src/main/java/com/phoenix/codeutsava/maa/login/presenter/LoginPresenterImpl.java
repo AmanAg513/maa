@@ -1,14 +1,11 @@
 package com.phoenix.codeutsava.maa.login.presenter;
 
-import android.util.Log;
-
 import com.phoenix.codeutsava.maa.login.LoginCallBack;
 import com.phoenix.codeutsava.maa.login.OtpCallBack;
 import com.phoenix.codeutsava.maa.login.model.LoginProvider;
 import com.phoenix.codeutsava.maa.login.model.data.LoginData;
 import com.phoenix.codeutsava.maa.login.model.data.OtpData;
 import com.phoenix.codeutsava.maa.login.view.LoginView;
-import com.phoenix.codeutsava.maa.login.view.OtpView;
 
 /**
  * Created by aman on 3/2/17.
@@ -17,18 +14,12 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     private LoginView loginView;
     private LoginProvider loginProvider;
-    private OtpView otpView;
 
     public LoginPresenterImpl(LoginView loginView, LoginProvider loginProvider) {
         this.loginView = loginView;
         this.loginProvider = loginProvider;
     }
-
-    public LoginPresenterImpl(OtpView otpview) {
-        this.otpView = otpview;
-    }
-
-    @Override
+  @Override
     public void requestOtp(String otp, String mobile) {
         loginView.showLoading(true);
 loginProvider.requestOtp(otp, mobile, new OtpCallBack() {
@@ -37,7 +28,7 @@ loginProvider.requestOtp(otp, mobile, new OtpCallBack() {
 
         if (otpData.isSuccess()) {
             loginView.showLoading(false);
-          // loginView.onOtpVerified();
+             loginView.onOtpVerified();
         } else {
             loginView.showLoading(false);
             loginView.showMessage(otpData.getMessage());

@@ -10,13 +10,14 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
+import com.phoenix.codeutsava.maa.helper.Urls;
 import com.phoenix.codeutsava.maa.login.model.data.LoginData;
 
 public interface LoginApi {
 
 
         @FormUrlEncoded
-        @POST(Urls.SEND_OTP)
+        @POST(Urls.REQUEST_LOGIN_SCREEN)
         Call<LoginData> requestLogin(@Field("name") String name, @Field("mobile") String mobile,
                                      @Field("fcm") String fcm);
 
@@ -24,4 +25,4 @@ public interface LoginApi {
     }
 
 
-}
+

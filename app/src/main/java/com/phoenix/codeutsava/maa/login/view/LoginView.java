@@ -9,6 +9,6 @@ public interface LoginView {
     void showMessage(String message);
 
     void onLoginVerified();
-    void onOtpVerified(String token);
+    void onOtpVerified();
 
 }

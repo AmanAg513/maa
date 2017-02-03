@@ -2,6 +2,7 @@ package com.phoenix.codeutsava.maa.login.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.phoenix.codeutsava.maa.helper.Urls;
 import com.phoenix.codeutsava.maa.login.LoginCallBack;
 import com.phoenix.codeutsava.maa.login.OtpCallBack;
 import com.phoenix.codeutsava.maa.login.api.LoginApi;
@@ -62,7 +63,7 @@ public class LoginRetrofitProvider implements LoginProvider{
             @Override
             public void onFailure(Call<LoginData> call, Throwable t) {
 
-                loginUsCallBack.onFailure("Unable to connect");
+                loginUsCallback.onFailure("Unable to connect");
 
                 t.printStackTrace();
 
