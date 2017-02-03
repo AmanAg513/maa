@@ -27,10 +27,10 @@ public class AfterBirthListAdapter extends RecyclerView.Adapter<AfterBirthListAd
     private LayoutInflater layoutInflater;
     private ScheduleScreenFragment scheduleScreenFragment;
 
-    public AfterBirthListAdapter(Context context, LayoutInflater layoutInflater, ScheduleScreenFragment scheduleScreenFragment) {
+    public AfterBirthListAdapter(Context context, ScheduleScreenFragment scheduleScreenFragment) {
         this.context = context;
-        this.layoutInflater = layoutInflater;
         this.scheduleScreenFragment = scheduleScreenFragment;
+        layoutInflater = LayoutInflater.from(context);
     }
 
     public void setData(List<AfterBirthListDetails> afterBirthListDetails){

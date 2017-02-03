@@ -25,9 +25,9 @@ public class BeforeBirthListAdapter extends RecyclerView.Adapter<BeforeBirthList
     private LayoutInflater layoutInflater;
     private ScheduleScreenFragment scheduleScreenFragment;
 
-    public BeforeBirthListAdapter(Context context, LayoutInflater layoutInflater, ScheduleScreenFragment scheduleScreenFragment) {
+    public BeforeBirthListAdapter(Context context, ScheduleScreenFragment scheduleScreenFragment) {
         this.context = context;
-        this.layoutInflater = layoutInflater;
+        layoutInflater = LayoutInflater.from(context);
         this.scheduleScreenFragment = scheduleScreenFragment;
     }
 
