@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:id="@+id/appBarLayout"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="login"
+            android:background="?attr/selectableItemBackground"
+
+            />
+    </android.support.design.widget.AppBarLayout>
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_below="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="12dp"
+            app:cardCornerRadius="8dp"
+            app:contentPadding="8dp"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:padding="8dp"
+                    >
+
+                    <ImageView
+                        android:src="@drawable/logo"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:padding="4dp"
+                        />
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/login_description"
+                        android:padding="4dp"
+                        android:textColor="@color/accent_light"
+                        android:textSize="@dimen/large_text_size"
+                        />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/editText1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:hint="Full Name"
+                    android:textSize="@dimen/small_text_size" />
+
+                <EditText
+                    android:id="@+id/editText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:hint="Mobile No"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:textSize="@dimen/small_text_size" />
+
+
+                <Button
+                    android:id="@+id/button1"
+                    style="@style/Base.Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Submit" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </ScrollView>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scrollView1"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        />
+
+    <ScrollView
+        android:layout_below="@+id/progressBar"
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            app:cardCornerRadius="8dp"
+            app:contentPadding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="@string/otp_screen_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:id="@+id/textView"
+                    android:textColor="@color/accent_light"
+                    android:visibility="gone"
+                    />
+
+                <EditText
+                    android:id="@+id/editText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ems="6"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:hint="6 Digit OTP"
+                    android:inputType="phone"
+                    android:maxLength="6"
+                    android:textSize="@dimen/large_text_size"
+                    android:visibility="gone"/>
+
+
+                <Button
+                    android:id="@+id/button2"
+                    style="@style/Base.Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="submit"
+                    android:visibility="gone"
+
+                    />
+                <TextView
+                    android:text=" You can resend otp in 30 second"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:id="@+id/textView2"
+                    android:textColor="@color/accent_light"
+                    android:visibility="gone"
+                    />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </ScrollView>
+    <ProgressBar
+
+        android:layout_below="@+id/scrollView2"
+        android:id="@+id/progressBarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+</RelativeLayout>
