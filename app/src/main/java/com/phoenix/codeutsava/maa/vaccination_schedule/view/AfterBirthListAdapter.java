@@ -5,8 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.phoenix.codeutsava.maa.R;
 import com.phoenix.codeutsava.maa.vaccination_schedule.model.data.AfterBirthListDetails;
+import com.phoenix.codeutsava.maa.vaccination_schedule.model.data.ScheduleScreenData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,12 +40,24 @@ public class AfterBirthListAdapter extends RecyclerView.Adapter<AfterBirthListAd
 
     @Override
     public AfterBirthListAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        View itemView = layoutInflater.inflate(R.layout.schedule_item_after, parent, false);
+        return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(AfterBirthListAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+        final AfterBirthListDetails afterBirthListDetails= afterBirthListDetailsList.get(position);
+        holder.textView_name.setText(afterBirthListDetails.getVaccination_name());
+        holder.textView_date.setText(afterBirthListDetails.getVaccination_time());
 
+
+        //Map To Be Opened
+        holder.button_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Map Intent
+            }
+        });
     }
 
     @Override
@@ -51,8 +67,15 @@ public class AfterBirthListAdapter extends RecyclerView.Adapter<AfterBirthListAd
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        public MyViewHolder(View itemView) {
+        private TextView textView_name;
+        private TextView textView_date;
+        private Button button_map;
+
+        private MyViewHolder(View itemView) {
             super(itemView);
+            textView_date=(TextView)itemView.findViewById(R.id.textView_date);
+            textView_name=(TextView)itemView.findViewById(R.id.textView_name);
+            button_map = (Button)itemView.findViewById(R.id.button_map);
         }
     }
 }
