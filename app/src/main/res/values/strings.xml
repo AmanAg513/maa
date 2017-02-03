@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Maa</string>
+    <string name="title_activity_home_page">HomePage</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="otp_screen_description">  Enter the otp in the Space given below to verify your mobile.</string>
+    <string name="login_description">One time Login </string>
 </resources>
