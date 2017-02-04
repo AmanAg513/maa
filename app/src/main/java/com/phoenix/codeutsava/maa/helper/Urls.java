@@ -11,7 +11,8 @@ public class Urls {
     public static final String REQUEST_WELCOME_SCREEN = "url/";
     public static final String REQUEST_LOGIN_SCREEN = "login/";
     public static final String REQUEST_OTP_SCREEN = "otp/";
-
+    public static final String REQUEST_PDF= "pdf/";
+    public static final String REQUEST_GALLERY= "gallery/";
 
 
 
