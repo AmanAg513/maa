@@ -29,7 +29,7 @@ public class GeotagPresenterImpl implements GeotagPresenter {
                 {
                     geotagView.showMessage(geotagData.getMessage());
                     geotagView.showProgressBar(false);
-                    geotagView.onDataRecieved(geotagData.getDataList());
+                    geotagView.onDataRecieved(geotagData.getMap_deatils());
 
                 }
 

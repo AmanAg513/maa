@@ -62,7 +62,7 @@ public class AfterBirthListAdapter extends RecyclerView.Adapter<AfterBirthListAd
 
     @Override
     public int getItemCount() {
-        return 0;
+        return afterBirthListDetailsList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

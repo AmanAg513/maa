@@ -10,20 +10,21 @@ public class GeotagData {
 
     private boolean success;
     private String message;
-    private List<DoctorData> dataList;
+    private List<DoctorData> map_deatils;
 
-    public GeotagData(boolean success, String message, List<DoctorData> dataList) {
+
+    public GeotagData(boolean success, String message, List<DoctorData> map_deatils) {
         this.success = success;
         this.message = message;
-        this.dataList = dataList;
+        this.map_deatils = map_deatils;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public List<DoctorData> getDataList() {
-        return dataList;
+    public List<DoctorData> getMap_deatils() {
+        return map_deatils;
     }
 
     public boolean isSuccess() {

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by aman on 4/2/17.
  */
-public class FurtherReadingAdapter{
+public class FurtherReadingAdapter {
 
     private List<FurtherReadingDataDetails> DataList = new ArrayList<>();
     private Context context;
@@ -24,5 +24,4 @@ public class FurtherReadingAdapter{
         this.context = context;
         this.furtherReadingFragment = furtherReadingFragment;
     }
-
 }

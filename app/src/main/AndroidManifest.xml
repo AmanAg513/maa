@@ -22,14 +22,16 @@
         <activity
             android:name=".home.HomePage"
             android:label="@string/title_activity_home_page"
-            >
-        </activity>
+           />
+
+
         <activity android:name=".welcome_screen.view.WelcomeScreenActivity"/>
 
 
 
 
         <activity android:name=".login.view.LoginViewImpl">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
