@@ -25,11 +25,13 @@ public class FurtherReadingAdapter extends RecyclerView.Adapter <FurtherReadingA
     private Context context;
     private LayoutInflater layoutInflater;
     private FurtherReadingFragment furtherReadingFragment;
+    private FurtherReadingView furtherReadingView;
 
     public FurtherReadingAdapter(Context context, FurtherReadingFragment furtherReadingFragment) {
         this.context = context;
         this.furtherReadingFragment = furtherReadingFragment;
         layoutInflater=LayoutInflater.from(context);
+        furtherReadingView=new FurtherReadingFragment();
     }
 
     public void setData(List<FurtherReadingDataDetails> furtherReadingDataDetailsList) {

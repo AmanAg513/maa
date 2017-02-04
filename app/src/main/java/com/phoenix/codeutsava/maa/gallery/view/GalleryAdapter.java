@@ -26,10 +26,13 @@ public class GalleryAdapter extends RecyclerView.Adapter <GalleryAdapter.MyViewH
     private Context context;
     private LayoutInflater layoutInflater;
     private GalleryFragment galleryFragmentFragment;
+    private GalleryView galleryView;
 
     public GalleryAdapter(GalleryFragment galleryFragmentFragment, Context context) {
         this.galleryFragmentFragment = galleryFragmentFragment;
         this.context = context;
+        layoutInflater=LayoutInflater.from(context);
+        galleryView=new GalleryFragment();
     }
 
     public void setData(List<GalleryDataDetails> galleryDataDetailsList) {
