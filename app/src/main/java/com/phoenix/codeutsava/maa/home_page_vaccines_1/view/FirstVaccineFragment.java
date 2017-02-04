@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.phoenix.codeutsava.maa.R;
 import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.FirstVaccineProvider;
@@ -31,6 +33,10 @@ public class FirstVaccineFragment extends Fragment implements FirstVaccineView {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ViewPager viewPager;
+    private ViewPagerAdapter viewPagerAdapter;
+    private ProgressBar progressBar;
+
 
     private OnFragmentInteractionListener mListener;
 
