@@ -94,7 +94,7 @@ String dueDate1;
                     dueDate.setError("Please fill mobile");
                     dueDate.requestFocus();
 
-
+                }
                 if ((name1.equals("") || name1.equals(null)) ||
                         ((mobile1.equals("") || mobile1.equals(null)) || mobile1.length() != 10)
 
