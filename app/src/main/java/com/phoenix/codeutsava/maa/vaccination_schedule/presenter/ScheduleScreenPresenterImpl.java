@@ -31,14 +31,14 @@ public class ScheduleScreenPresenterImpl  implements  ScheduleScreenPresenter{
                 else
                 {
                     scheduleScreenView.showLoading(false);
-                    scheduleScreenView.showError("");
+                    scheduleScreenView.showError("Something went wrong");
                 }
             }
 
             @Override
             public void onFailure(String error) {
                 scheduleScreenView.showLoading(false);
-                scheduleScreenView.showError("Failed");
+                scheduleScreenView.showError("Please try again in sometime.");
 
             }
         });

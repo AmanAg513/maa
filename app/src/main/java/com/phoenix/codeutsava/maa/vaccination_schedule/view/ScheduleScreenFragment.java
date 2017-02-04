@@ -4,11 +4,23 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.phoenix.codeutsava.maa.R;
+import com.phoenix.codeutsava.maa.helper.SharedPrefs;
+import com.phoenix.codeutsava.maa.vaccination_schedule.model.RetrofitScheduleScreenProvider;
+import com.phoenix.codeutsava.maa.vaccination_schedule.model.data.BeforeBirthListDetails;
+import com.phoenix.codeutsava.maa.vaccination_schedule.presenter.ScheduleScreenPresenter;
+import com.phoenix.codeutsava.maa.vaccination_schedule.presenter.ScheduleScreenPresenterImpl;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,12 +35,25 @@ public class ScheduleScreenFragment extends Fragment implements  ScheduleScreenV
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    @BindView(R.id.afterRecycler)
+    RecyclerView afterRecycler;
+
+    @BindView(R.id.beforeRecycler)
+    RecyclerView beforeRecycler;
 
 
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private AfterBirthListAdapter afterBirthListAdapter;
+    private BeforeBirthListAdapter beforeBirthListAdapter;
+    private ScheduleScreenPresenter scheduleScreenPresenter;
+    private LinearLayoutManager layoutManager;
+    private ProgressBar afterBar;
+    private ProgressBar beforeBar;
+    private SharedPrefs sharedPrefs;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -67,7 +92,35 @@ public class ScheduleScreenFragment extends Fragment implements  ScheduleScreenV
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule_screen, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_schedule_screen, container, false);
+
+        ButterKnife.bind(this, view);
+        initialize();
+        afterBar = (ProgressBar)view.findViewById(R.id.afterBar);
+        beforeBar =(ProgressBar)view.findViewById(R.id.beforeBar);
+
+
+        return view;
+    }
+
+
+    void initialize(){
+        sharedPrefs = new SharedPrefs(getContext());
+
+        afterBirthListAdapter = new AfterBirthListAdapter(getContext(), this);
+        beforeBirthListAdapter = new BeforeBirthListAdapter(getContext(), this);
+        layoutManager = new LinearLayoutManager(getContext());
+        afterRecycler.setHasFixedSize(true);
+        beforeRecycler.setHasFixedSize(true);
+        scheduleScreenPresenter = new ScheduleScreenPresenterImpl(this , new RetrofitScheduleScreenProvider());
+        afterRecycler.setLayoutManager(layoutManager);
+        afterRecycler.setHasFixedSize(true);
+        afterRecycler.setAdapter(afterBirthListAdapter);
+
+        beforeRecycler.setLayoutManager(layoutManager);
+        beforeRecycler.setHasFixedSize(true);
+        beforeRecycler.setAdapter(beforeBirthListAdapter);
 
 
     }
@@ -98,11 +151,21 @@ public class ScheduleScreenFragment extends Fragment implements  ScheduleScreenV
 
     @Override
     public void showLoading(boolean show) {
+        if(show)
+        {
+            afterBar.setVisibility(View.VISIBLE);
+            beforeBar.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+              afterBar.setVisibility(View.INVISIBLE);
+        }     beforeBar.setVisibility(View.INVISIBLE);
 
     }
 
     @Override
     public void showError(String error) {
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
 
     }
 
