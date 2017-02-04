@@ -45,7 +45,6 @@ public class WelcomeScreenActivity extends Activity implements WelcomeScreenView
 
     private WelcomeScreenPresenter welcomeScreenPresenter;
     private ImageLoader imageLoader;
-    private Context context;
     private ProgressBar txtProgressBar;
     private ProgressBar progressBar;
 
@@ -57,16 +56,11 @@ public class WelcomeScreenActivity extends Activity implements WelcomeScreenView
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
-//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         ButterKnife.bind(this);
-
         txtProgressBar=(ProgressBar)findViewById(R.id.txt_progressBar);
         progressBar=(ProgressBar)findViewById(R.id.progressBar_welcome);
-        welcomeScreenPresenter = new WelcomeScreenPresenterImpl(this,
-                new RetrofitWelcomeScreenProvider());
+        welcomeScreenPresenter = new WelcomeScreenPresenterImpl(this, new RetrofitWelcomeScreenProvider());
         welcomeScreenPresenter.requestWelcomeData();
-
-//        showMessage(welcomeScreenData);
     }
     @Override
     public void showProgressBar(boolean show) {
@@ -84,7 +78,7 @@ public class WelcomeScreenActivity extends Activity implements WelcomeScreenView
     @Override
     public void showMessage(WelcomeScreenData welcomeScreenData) {
         textView.setText(welcomeScreenData.getMessage());
-        imageLoader = new GlideImageLoader(context);
+        imageLoader = new GlideImageLoader(this);
         imageLoader.loadImage(welcomeScreenData.getImage_url(),imageView,progressBar);
     }
 

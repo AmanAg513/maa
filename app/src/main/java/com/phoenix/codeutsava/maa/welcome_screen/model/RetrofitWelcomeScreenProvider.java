@@ -19,7 +19,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitWelcomeScreenProvider implements WelcomeScreenProvider {
 
-
     private WelcomeScreenRequestApi welcomeScreenRequestApi;
     private Retrofit retrofit;
 
