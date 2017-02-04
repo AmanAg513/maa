@@ -5,6 +5,7 @@ import java.util.List;
 /**
  * Created by aman on 4/2/17.
  */
+
 public class FurtherReadingData {
     private String message;
     private boolean success;

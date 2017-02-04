@@ -43,8 +43,10 @@ public class FurtherReadingRetrofitProvider implements FurtherReadingProvider{
     public void requestFurtherReading(final FurtherReadingCallBack furtherReadingCallBack) {
 
 
+
       furtherReadingApi = retrofit.create(FurtherReadingApi.class);
-Call<FurtherReadingData> furtherReadingDataCall=furtherReadingApi.getPdf();
+        Call<FurtherReadingData> furtherReadingDataCall=furtherReadingApi.getPdf();
+
         furtherReadingDataCall.enqueue(new Callback<FurtherReadingData>() {
             @Override
             public void onResponse(Call<FurtherReadingData> call, Response<FurtherReadingData> response) {
