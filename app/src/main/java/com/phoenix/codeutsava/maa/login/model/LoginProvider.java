@@ -8,7 +8,7 @@ import com.phoenix.codeutsava.maa.login.OtpCallBack;
 
 
 public interface LoginProvider {
-    void requestLogin(String name, String mobile, String fcm, LoginCallBack loginUsCallback);
+    void requestLogin(String name, String mobile, String fcm,String dueDate, LoginCallBack loginUsCallback);
 
 
     void requestOtp(String otp, String mobile, OtpCallBack otpCallBack);

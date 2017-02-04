@@ -2,6 +2,7 @@ package com.phoenix.codeutsava.maa.further_reading.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class FurtherReadingAdapter extends RecyclerView.Adapter <FurtherReadingA
 
     public void setData(List<FurtherReadingDataDetails> furtherReadingDataDetailsList) {
         DataList= furtherReadingDataDetailsList;
+        Log.d("response","setData");
     }
 
 
