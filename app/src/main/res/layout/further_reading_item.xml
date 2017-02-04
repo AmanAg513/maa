@@ -6,6 +6,7 @@
     android:layout_margin="4dp"
     android:layout_gravity="center"
     app:cardBackgroundColor="#f172a2"
+    android:alpha="0.5"
     app:cardCornerRadius="4dp"
     app:contentPadding="4dp"
     android:layout_marginLeft="20dp"
@@ -32,14 +33,19 @@
         android:orientation="horizontal"
         android:weightSum="2"
         >
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_weight="1"
-    android:id="@+id/button1"
-    android:background="@drawable/button_further"
-    android:text="View"
-    />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/button1"
+            android:background="@drawable/button_further"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:text="View"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:onClick="view"
+            />
 
 
         <Button
@@ -48,8 +54,13 @@
             android:layout_weight="1"
             android:id="@+id/button2"
             android:text="Download"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
             android:background="@drawable/button_further"
-/>
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:onClick="download"
+            />
 
 
     </LinearLayout>
