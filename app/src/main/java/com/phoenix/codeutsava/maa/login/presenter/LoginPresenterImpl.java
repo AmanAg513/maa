@@ -27,14 +27,12 @@ public class LoginPresenterImpl implements LoginPresenter {
 loginProvider.requestOtp(otp, mobile, new OtpCallBack() {
     @Override
     public void onSuccess(OtpData otpData) {
-
         if (otpData.isSuccess()) {
             loginView.showLoading(false);
              loginView.onOtpVerified();
         } else {
             loginView.showLoading(false);
             loginView.showMessage(otpData.getMessage());
-
         }
 
     }
