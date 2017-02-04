@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.phoenix.codeutsava.maa.R;
 import com.phoenix.codeutsava.maa.helper.SharedPrefs;
+import com.phoenix.codeutsava.maa.vaccination_schedule.model.MockScheduleScreenProvider;
 import com.phoenix.codeutsava.maa.vaccination_schedule.model.RetrofitScheduleScreenProvider;
 import com.phoenix.codeutsava.maa.vaccination_schedule.model.data.BeforeBirthListDetails;
 import com.phoenix.codeutsava.maa.vaccination_schedule.model.data.ScheduleScreenData;
@@ -114,7 +115,10 @@ public class ScheduleScreenFragment extends Fragment implements  ScheduleScreenV
         layoutManager1 = new LinearLayoutManager(getContext());
         afterRecycler.setHasFixedSize(true);
         beforeRecycler.setHasFixedSize(true);
-        scheduleScreenPresenter = new ScheduleScreenPresenterImpl(this , new RetrofitScheduleScreenProvider());
+//        scheduleScreenPresenter = new ScheduleScreenPresenterImpl(this , new RetrofitScheduleScreenProvider());
+        scheduleScreenPresenter = new ScheduleScreenPresenterImpl(this , new MockScheduleScreenProvider());
+
+
         afterRecycler.setLayoutManager(layoutManager);
         afterRecycler.setHasFixedSize(true);
         afterRecycler.setAdapter(afterBirthListAdapter);
