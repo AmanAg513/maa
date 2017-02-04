@@ -23,7 +23,7 @@ public class ViewPagerAdapter extends PagerAdapter{
         this.context = context;
     }
 
-    
+
 
     @Override
     public int getCount() {
