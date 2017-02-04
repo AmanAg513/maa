@@ -63,12 +63,17 @@
 
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button_welcome"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_below="@+id/layout_2"
             android:layout_centerHorizontal="true"
-            android:text="REGISTER"
+            android:background="@drawable/welcome_button"
+            android:text="Start"
+            android:textSize="50dp"
+            android:textColor="#FFFFFF"
             />
 
 

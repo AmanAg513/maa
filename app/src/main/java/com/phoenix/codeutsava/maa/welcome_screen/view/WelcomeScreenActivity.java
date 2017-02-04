@@ -73,7 +73,7 @@ public class WelcomeScreenActivity extends Activity implements WelcomeScreenView
     public void showMessage(WelcomeScreenData welcomeScreenData) {
         textView.setText(welcomeScreenData.getMessage());
         imageLoader = new GlideImageLoader(this);
-        imageLoader = new GlideImageLoader(this);
+//      imageLoader = new GlideImageLoader(this);
         imageLoader.loadImage(welcomeScreenData.getImage_url(),imageView,progressBar);
     }
 
