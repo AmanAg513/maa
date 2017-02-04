@@ -24,6 +24,7 @@ public class RetrofitFirstVaccineProvider implements  FirstVaccineProvider{
 
     public RetrofitFirstVaccineProvider()
     {
+
         Gson gson=new GsonBuilder()
                 .setLenient()
                 .create();
