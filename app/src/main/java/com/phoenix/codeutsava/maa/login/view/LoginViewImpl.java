@@ -99,10 +99,12 @@ public class LoginViewImpl extends Activity implements LoginView  {
                 } else {
 
                     loginScreenPresenter.requestLogin(name1, mobile1, MyApplication.getFcm());
+                    Log.d("response","fcm call");
 
                     sharedPrefs = new SharedPrefs(LoginViewImpl.this);
                     sharedPrefs.setFcm( MyApplication.getFcm());
 
+                        Log.d("response","fcm send");
                 }
 
 

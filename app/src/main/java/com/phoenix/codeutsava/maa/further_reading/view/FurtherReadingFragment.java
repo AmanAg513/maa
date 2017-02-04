@@ -1,46 +1,59 @@
-package com.phoenix.codeutsava.maa.home_page_vaccines_1.view;
+package com.phoenix.codeutsava.maa.further_reading.view;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.phoenix.codeutsava.maa.R;
-import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.FirstVaccineProvider;
-import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.data.FirstVaccineDetails;
-
-import java.util.List;
+import com.phoenix.codeutsava.maa.further_reading.model.FurtherReadingRetrofitProvider;
+import com.phoenix.codeutsava.maa.further_reading.presenter.FurtherReadingPresenter;
+import com.phoenix.codeutsava.maa.helper.SharedPrefs;
+import com.phoenix.codeutsava.maa.further_reading.presenter.FurtherReadingPresenterImpl;
+import butterknife.BindView;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FirstVaccineFragment.OnFragmentInteractionListener} interface
+ * {@link FurtherReadingFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FirstVaccineFragment#newInstance} factory method to
+ * Use the {@link FurtherReadingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FirstVaccineFragment extends Fragment implements FirstVaccineView {
+public class FurtherReadingFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    @BindView(R.id.furtherReading_recycler)
+    RecyclerView recyclerView;
+
+
+    ProgressBar progressBar;
+
+
+
+    private FurtherReadingAdapter furtherReadingAdapter;
+    private LinearLayoutManager linearLayoutManager;
+    private FurtherReadingPresenter furtherReadingPresenter;
+    private SharedPrefs sharedPrefs;
+    private String access_token;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ViewPager viewPager;
-    private ViewPagerAdapter viewPagerAdapter;
-    private ProgressBar progressBar;
-
 
     private OnFragmentInteractionListener mListener;
 
-    public FirstVaccineFragment() {
+    public FurtherReadingFragment() {
         // Required empty public constructor
     }
 
@@ -50,11 +63,11 @@ public class FirstVaccineFragment extends Fragment implements FirstVaccineView {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FirstVaccineFragment.
+     * @return A new instance of fragment FurtherReadingFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FirstVaccineFragment newInstance(String param1, String param2) {
-        FirstVaccineFragment fragment = new FirstVaccineFragment();
+    public static FurtherReadingFragment newInstance(String param1, String param2) {
+        FurtherReadingFragment fragment = new FurtherReadingFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -75,8 +88,24 @@ public class FirstVaccineFragment extends Fragment implements FirstVaccineView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first_vaccine, container, false);
+        View view= inflater.inflate(R.layout.fragment_further_reading, container, false);
+        progressBar= (ProgressBar)view.findViewById(R.id.furtherReading_progressBar);
+
+        return view;
     }
+   /* furtherReadingPresenter= new FurtherReadingPresenterImpl(this,new FurtherReadingRetrofitProvider());
+
+    furtherReadingAdapter = new FurtherReadingAdapter(getContext(), this);
+
+    linearLayoutManager = new LinearLayoutManager(getContext());
+    recyclerView.setLayoutManager(linearLayoutManager);
+    recyclerView.setAdapter(FurtherReadingAdapter);
+    furtherReadingPresenter.requestFurtherReading();
+*/
+
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -100,21 +129,6 @@ public class FirstVaccineFragment extends Fragment implements FirstVaccineView {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void showMessage(String error) {
-
-    }
-
-    @Override
-    public void showProgressBar(boolean show) {
-
-    }
-
-    @Override
-    public void setData(List<FirstVaccineDetails> firstVaccineDetails) {
-
     }
 
     /**

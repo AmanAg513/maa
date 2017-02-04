@@ -31,9 +31,18 @@ dependencies {
     })
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
+
+
+    testCompile 'junit:junit:4.12'
+
+    //    compile 'com.google.android.gms:play-services:10.0.1'
+
+
+
     compile 'com.karumi:dexter:2.3.1'
     compile 'com.alexvasilkov:gesture-views:2.1.1'
     compile 'com.fenchtose.nocropper:nocropper:0.1.6'
+
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.android.support:multidex:1.0.1'
@@ -48,11 +57,14 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.5.1'
     compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.google.firebase:firebase-core:10.0.1'
-    compile 'com.google.firebase:firebase-messaging:10.0.1'
+
+    compile 'com.google.firebase:firebase-core:9.6.1'
+    compile 'com.google.firebase:firebase-messaging:9.6.1'
+
     compile 'com.google.android.gms:play-services:10.0.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
 
 
 
