@@ -60,7 +60,7 @@ public class BeforeBirthListAdapter extends RecyclerView.Adapter<BeforeBirthList
 
     @Override
     public int getItemCount() {
-        return 0;
+        return beforeBirthListDetailsList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
