@@ -4,31 +4,21 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import com.phoenix.codeutsava.maa.R;
-import com.phoenix.codeutsava.maa.helper.SharedPrefs;
-import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.FirstVaccineProvider;
-import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.RetrofitFirstVaccineProvider;
-import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.data.FirstVaccineDetails;
-import com.phoenix.codeutsava.maa.home_page_vaccines_1.presenter.FirstVaccinePresenter;
-import com.phoenix.codeutsava.maa.home_page_vaccines_1.presenter.FirstVaccinePresenterImpl;
-
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FirstVaccineFragment.OnFragmentInteractionListener} interface
+ * {@link HomeFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FirstVaccineFragment#newInstance} factory method to
+ * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FirstVaccineFragment extends Fragment implements FirstVaccineView {
+public class HomeFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -37,17 +27,10 @@ public class FirstVaccineFragment extends Fragment implements FirstVaccineView {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ViewPager viewPager;
-    private ViewPagerAdapter viewPagerAdapter;
-    private ProgressBar progressBar;
-    private FirstVaccinePresenter firstVaccinePresenter;
-    private SharedPrefs sharedPrefs;
-
-
 
     private OnFragmentInteractionListener mListener;
 
-    public FirstVaccineFragment() {
+    public HomeFragment() {
         // Required empty public constructor
     }
 
@@ -57,11 +40,11 @@ public class FirstVaccineFragment extends Fragment implements FirstVaccineView {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FirstVaccineFragment.
+     * @return A new instance of fragment HomeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FirstVaccineFragment newInstance(String param1, String param2) {
-        FirstVaccineFragment fragment = new FirstVaccineFragment();
+    public static HomeFragment newInstance(String param1, String param2) {
+        HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -82,17 +65,7 @@ public class FirstVaccineFragment extends Fragment implements FirstVaccineView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_first_vaccine, container, false);
-        progressBar = (ProgressBar)view.findViewById(R.id.first_progressBar);
-        sharedPrefs = new SharedPrefs(getContext());
-
-        viewPagerAdapter = new ViewPagerAdapter(getContext());
-        viewPager=(ViewPager)view.findViewById(R.id.first_viewPager);
-        firstVaccinePresenter= new FirstVaccinePresenterImpl(this, new RetrofitFirstVaccineProvider());
-        firstVaccinePresenter.requestFirstVaccineData();
-        viewPagerAdapter = new ViewPagerAdapter(getContext());
-        viewPager.setAdapter(viewPagerAdapter);
-        return view;
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -105,37 +78,18 @@ public class FirstVaccineFragment extends Fragment implements FirstVaccineView {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void showMessage(String error) {
-
-
-    }
-
-    @Override
-    public void showProgressBar(boolean show) {
-        if(show)
-        {
-            progressBar.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            progressBar.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    @Override
-    public void setData(List<FirstVaccineDetails> firstVaccineDetails) {
-            viewPagerAdapter.setData(firstVaccineDetails);
-            viewPagerAdapter.notifyDataSetChanged();
     }
 
     /**

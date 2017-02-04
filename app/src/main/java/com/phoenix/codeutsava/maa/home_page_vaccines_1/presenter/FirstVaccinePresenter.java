@@ -9,4 +9,6 @@ public interface FirstVaccinePresenter {
 
 
     void requestFirstVaccineData();
+
+    void requestHomeData(String fcm);
 }
