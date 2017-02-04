@@ -6,18 +6,15 @@ import java.util.List;
  * Created by aman on 4/2/17.
  */
 public class FurtherReadingData {
-  private String message;
-    private Boolean Success;
-  private List<FurtherReadingDataDetails> furtherReadingDataDetailsList;
+    private String message;
+    private boolean success;
+    private List<FurtherReadingDataDetails> furtherReadingDataDetailsList;
 
-
-    public Boolean getSuccess() {
-        return Success;
+    public boolean isSuccess() {
+        return success;
     }
 
-    public void setSuccess(Boolean success) {
-        Success = success;
-    }
+
 
     public String getMessage() {
 
@@ -28,9 +25,7 @@ public class FurtherReadingData {
         return furtherReadingDataDetailsList;
     }
 
-    public void setFurtherReadingDataDetailsList(List<FurtherReadingDataDetails> furtherReadingDataDetailsList) {
-        this.furtherReadingDataDetailsList = furtherReadingDataDetailsList;
-    }
+
 
     public void setMessage(String message) {
         this.message = message;
@@ -40,7 +35,7 @@ public class FurtherReadingData {
     public FurtherReadingData(String message, Boolean success, List<FurtherReadingDataDetails> furtherReadingDataDetailsList) {
 
         this.message = message;
-        Success = success;
+        this.success = success;
         this.furtherReadingDataDetailsList = furtherReadingDataDetailsList;
     }
 }

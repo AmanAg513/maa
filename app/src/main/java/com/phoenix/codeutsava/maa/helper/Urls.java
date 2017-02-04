@@ -14,12 +14,14 @@ public class Urls {
     public static final String REQUEST_LOGIN_SCREEN = "login/";
 
     public static final String REQUEST_OTP_SCREEN = "verify/";
-    public static final String REQUEST_PDF= "pdf/";
-    public static final String REQUEST_GALLERY= "gallery/";
+
     public static final String REQUEST_GEOTAGS="map/";
 
     public static final String REQUEST_HOME= "home/";
     public static final String REQUEST_FIRST_VACCINE= "first_vaccine/";
     public static final String REQUEST_SCHEDULE_SCREEN = "vaccin/";
+    public static final String REQUEST_PDF = "pdf/";
+    public static final String REQUEST_GALLERY = "video/";
+
 
 }

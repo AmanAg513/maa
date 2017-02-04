@@ -1,5 +1,7 @@
 package com.phoenix.codeutsava.maa.further_reading.model;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.phoenix.codeutsava.maa.further_reading.FurtherReadingCallBack;
@@ -47,12 +49,14 @@ Call<FurtherReadingData> furtherReadingDataCall=furtherReadingApi.getCities();
             @Override
             public void onResponse(Call<FurtherReadingData> call, Response<FurtherReadingData> response) {
                 furtherReadingCallBack.onSuccess(response.body())  ;
+                Log.d("response","retrofit ka call back ka success");
             }
 
             @Override
             public void onFailure(Call<FurtherReadingData> call, Throwable t) {
                 furtherReadingCallBack.onFailure("UnableTo Connect");
                 t.printStackTrace();
+                Log.d("response","retrofit ke call back ka failure");
             }
         });
     }

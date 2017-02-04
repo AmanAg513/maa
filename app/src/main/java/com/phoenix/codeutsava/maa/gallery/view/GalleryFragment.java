@@ -25,6 +25,7 @@ import com.phoenix.codeutsava.maa.gallery.presenter.GalleryPresenterImpl;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -96,7 +97,7 @@ public class GalleryFragment extends Fragment implements GalleryView {
         progressBar= (ProgressBar)view.findViewById(R.id.gallery_progressBar);
         galleryPresenter=new GalleryPresenterImpl(this, new GalleryRetrofitProvider());
         galleryAdapter = new GalleryAdapter(this,getContext());
-
+              ButterKnife.bind(this,view);
         linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(galleryAdapter);
