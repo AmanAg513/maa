@@ -37,7 +37,6 @@ public class RetrofitGeotagProvider implements GeotagProvider {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-
     }
 
     @Override

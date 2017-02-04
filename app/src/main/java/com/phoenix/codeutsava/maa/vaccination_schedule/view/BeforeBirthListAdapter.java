@@ -45,9 +45,8 @@ public class BeforeBirthListAdapter extends RecyclerView.Adapter<BeforeBirthList
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final BeforeBirthListDetails beforeBirthListDetails= beforeBirthListDetailsList.get(position);
-        holder.textView_name.setText(beforeBirthListDetails.getVaccination_name());
-        holder.textView_date.setText(beforeBirthListDetails.getVaccination_time());
-
+        holder.textView_name.setText(beforeBirthListDetails.getName());
+        holder.textView_date.setText(beforeBirthListDetails.getData());
 
         //Map To Be Opened
         holder.button_map.setOnClickListener(new View.OnClickListener() {

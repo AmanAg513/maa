@@ -1,5 +1,7 @@
 package com.phoenix.codeutsava.maa.login.presenter;
 
+import android.util.Log;
+
 import com.phoenix.codeutsava.maa.login.LoginCallBack;
 import com.phoenix.codeutsava.maa.login.OtpCallBack;
 import com.phoenix.codeutsava.maa.login.model.LoginProvider;
@@ -40,7 +42,7 @@ loginProvider.requestOtp(otp, mobile, new OtpCallBack() {
     @Override
     public void onFailure(String error) {
         loginView.showLoading(false);
-        loginView.showMessage("Failed");
+        loginView.showMessage("Failed aa ");
 
     }
 });
@@ -57,10 +59,11 @@ loginProvider.requestOtp(otp, mobile, new OtpCallBack() {
                 if (loginData.isSuccess()) {
                     loginView.showLoading(false);
                     loginView.onLoginVerified();
+                    Log.d("response","login verified call");
                 } else {
                     loginView.showLoading(false);
                     loginView.showMessage(loginData.getMessage());
-
+                    Log.d("response","request login ka else");
                 }
             }
 
@@ -68,7 +71,7 @@ loginProvider.requestOtp(otp, mobile, new OtpCallBack() {
             public void onFailure(String error) {
                 loginView.showLoading(false);
                 loginView.showMessage("Failed");
-
+                Log.d("response","call back failure");
 
 
             }

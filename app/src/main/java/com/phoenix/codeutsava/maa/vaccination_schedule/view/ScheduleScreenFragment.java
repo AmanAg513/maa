@@ -16,6 +16,7 @@ import com.phoenix.codeutsava.maa.R;
 import com.phoenix.codeutsava.maa.helper.SharedPrefs;
 import com.phoenix.codeutsava.maa.vaccination_schedule.model.RetrofitScheduleScreenProvider;
 import com.phoenix.codeutsava.maa.vaccination_schedule.model.data.BeforeBirthListDetails;
+import com.phoenix.codeutsava.maa.vaccination_schedule.model.data.ScheduleScreenData;
 import com.phoenix.codeutsava.maa.vaccination_schedule.presenter.ScheduleScreenPresenter;
 import com.phoenix.codeutsava.maa.vaccination_schedule.presenter.ScheduleScreenPresenterImpl;
 
@@ -35,6 +36,7 @@ public class ScheduleScreenFragment extends Fragment implements  ScheduleScreenV
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
     @BindView(R.id.afterRecycler)
     RecyclerView afterRecycler;
 
@@ -50,8 +52,11 @@ public class ScheduleScreenFragment extends Fragment implements  ScheduleScreenV
     private BeforeBirthListAdapter beforeBirthListAdapter;
     private ScheduleScreenPresenter scheduleScreenPresenter;
     private LinearLayoutManager layoutManager;
-    private ProgressBar afterBar;
-    private ProgressBar beforeBar;
+    private LinearLayoutManager layoutManager1;
+    @BindView(R.id.afterBar)
+    ProgressBar afterBar;
+    @BindView(R.id.beforeBar)
+    ProgressBar beforeBar;
     private SharedPrefs sharedPrefs;
 
 
@@ -94,23 +99,19 @@ public class ScheduleScreenFragment extends Fragment implements  ScheduleScreenV
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_schedule_screen, container, false);
-
         ButterKnife.bind(this, view);
         initialize();
-        afterBar = (ProgressBar)view.findViewById(R.id.afterBar);
-        beforeBar =(ProgressBar)view.findViewById(R.id.beforeBar);
-
-
         return view;
     }
 
 
     void initialize(){
-        sharedPrefs = new SharedPrefs(getContext());
 
+        sharedPrefs = new SharedPrefs(getContext());
         afterBirthListAdapter = new AfterBirthListAdapter(getContext(), this);
         beforeBirthListAdapter = new BeforeBirthListAdapter(getContext(), this);
         layoutManager = new LinearLayoutManager(getContext());
+        layoutManager1 = new LinearLayoutManager(getContext());
         afterRecycler.setHasFixedSize(true);
         beforeRecycler.setHasFixedSize(true);
         scheduleScreenPresenter = new ScheduleScreenPresenterImpl(this , new RetrofitScheduleScreenProvider());
@@ -118,11 +119,10 @@ public class ScheduleScreenFragment extends Fragment implements  ScheduleScreenV
         afterRecycler.setHasFixedSize(true);
         afterRecycler.setAdapter(afterBirthListAdapter);
 
-        beforeRecycler.setLayoutManager(layoutManager);
+        beforeRecycler.setLayoutManager(layoutManager1);
         beforeRecycler.setHasFixedSize(true);
         beforeRecycler.setAdapter(beforeBirthListAdapter);
-
-
+        scheduleScreenPresenter.requestScheduleData();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -135,12 +135,7 @@ public class ScheduleScreenFragment extends Fragment implements  ScheduleScreenV
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+
     }
 
     @Override
@@ -166,7 +161,14 @@ public class ScheduleScreenFragment extends Fragment implements  ScheduleScreenV
     @Override
     public void showError(String error) {
         Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void onDataReceived(ScheduleScreenData scheduleScreenData) {
+        beforeBirthListAdapter.setData(scheduleScreenData.getBefore());
+        beforeBirthListAdapter.notifyDataSetChanged();
+        afterBirthListAdapter.setData(scheduleScreenData.getAfter());
+        afterBirthListAdapter.notifyDataSetChanged();
     }
 
     /**

@@ -35,7 +35,6 @@ public class AfterBirthListAdapter extends RecyclerView.Adapter<AfterBirthListAd
 
     public void setData(List<AfterBirthListDetails> afterBirthListDetails){
         afterBirthListDetailsList =  afterBirthListDetails;
-
     }
 
     @Override
@@ -47,10 +46,8 @@ public class AfterBirthListAdapter extends RecyclerView.Adapter<AfterBirthListAd
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final AfterBirthListDetails afterBirthListDetails= afterBirthListDetailsList.get(position);
-        holder.textView_name.setText(afterBirthListDetails.getVaccination_name());
-        holder.textView_date.setText(afterBirthListDetails.getVaccination_time());
-
-
+        holder.textView_name.setText(afterBirthListDetails.getName());
+        holder.textView_date.setText(afterBirthListDetails.getData());
         //Map To Be Opened
         holder.button_map.setOnClickListener(new View.OnClickListener() {
             @Override

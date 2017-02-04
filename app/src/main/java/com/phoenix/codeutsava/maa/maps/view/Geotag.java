@@ -101,7 +101,7 @@ public class Geotag extends Fragment implements OnMapReadyCallback,GeotagView{
         transaction.commit();
 
         fragment.getMapAsync(this);
-        geotagPresenter.requestWelcomeData();
+//        geotagPresenter.requestWelcomeData();
 
 
 
@@ -128,8 +128,24 @@ public class Geotag extends Fragment implements OnMapReadyCallback,GeotagView{
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Log.d("check","onmap");
         mMap = googleMap;
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+        double lat[]={21.2574100,21.2128880,21.2459287,21.2723165};
+        double lang[]={81.5752640,81.6514890,81.6154093,81.6695710};
+        int a=0,b=0;
+
+        String[] title={"AIIMS Raipur\n07712573777","RamKrishna Care Hospital\n07713060500","	Shri MediShine Hospital\n 07714222999","Shri Balaji Super Specility Hospital\n 07714241000"};
+
+        for(int i=0;i<4;i++)
+        {
+            a+=lat[i];
+            b+=lang[i];
+            LatLng sydney = new LatLng(lat[i],lang[i]);
+            mMap.addMarker(new MarkerOptions().position(sydney).title(title[i]));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(21.24683,81.62202)));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(13), 3700, null);
+        }
     }
 
     @Override
@@ -149,7 +165,7 @@ public class Geotag extends Fragment implements OnMapReadyCallback,GeotagView{
     @Override
     public void onDataRecieved(List<DoctorData> doctorDatas) {
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        datas=doctorDatas;
+        onMapReady(mMap);
         for(int i=1;i<4;i++)
         {
             DoctorData doctorData=datas.get(i);

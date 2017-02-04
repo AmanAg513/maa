@@ -19,6 +19,7 @@ import android.view.MenuItem;
 
 import com.phoenix.codeutsava.maa.R;
 import com.phoenix.codeutsava.maa.maps.view.Geotag;
+import com.phoenix.codeutsava.maa.vaccination_schedule.view.ScheduleScreenFragment;
 
 public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -61,17 +62,16 @@ public class HomePage extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_vaccine) {
+            setFragment(new ScheduleScreenFragment(),"Vaccines Schedule");
+        } else if (id == R.id.nav_maps) {
+            setFragment(new Geotag(),"Nearby Hospitals");
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_readFurther) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_about) {
 
         }
 

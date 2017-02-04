@@ -1,5 +1,7 @@
 package com.phoenix.codeutsava.maa.login.model;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.phoenix.codeutsava.maa.helper.Urls;
@@ -47,26 +49,22 @@ public class LoginRetrofitProvider implements LoginProvider{
     @Override
     public void requestLogin(String name, String mobile, String fcm, final LoginCallBack loginUsCallback) {
 
-
         Call<LoginData> loginDataCall = loginApi.requestLogin(name, mobile, fcm);
         loginDataCall.enqueue(new Callback<LoginData>() {
             @Override
             public void onResponse(Call<LoginData> call, Response<LoginData> response) {
 
-
+                Log.d("response","retrofit ka success ");
 
                 loginUsCallback.onSuccess(response.body());
             }
-
-
 
             @Override
             public void onFailure(Call<LoginData> call, Throwable t) {
 
                 loginUsCallback.onFailure("Unable to connect");
-
                 t.printStackTrace();
-
+                Log.d("response","retrofit ka  failure");
             }
         });
     }
