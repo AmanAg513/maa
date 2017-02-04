@@ -1,5 +1,7 @@
 package com.phoenix.codeutsava.maa.welcome_screen.presenter;
 
+import android.util.Log;
+
 import com.phoenix.codeutsava.maa.welcome_screen.WelcomeScreenCallBack;
 import com.phoenix.codeutsava.maa.welcome_screen.model.WelcomeScreenProvider;
 import com.phoenix.codeutsava.maa.welcome_screen.model.data.WelcomeScreenData;
@@ -42,6 +44,7 @@ public class WelcomeScreenPresenterImpl implements WelcomeScreenPresenter{
 
             @Override
             public void onFailure() {
+//
                 welcomeScreenView.showError("Failed");
                 welcomeScreenView.showProgressBar(false);
             }
