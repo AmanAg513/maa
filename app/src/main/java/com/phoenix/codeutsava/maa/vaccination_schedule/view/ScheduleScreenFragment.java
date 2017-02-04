@@ -115,8 +115,8 @@ public class ScheduleScreenFragment extends Fragment implements  ScheduleScreenV
         layoutManager1 = new LinearLayoutManager(getContext());
         afterRecycler.setHasFixedSize(true);
         beforeRecycler.setHasFixedSize(true);
-//        scheduleScreenPresenter = new ScheduleScreenPresenterImpl(this , new RetrofitScheduleScreenProvider());
-        scheduleScreenPresenter = new ScheduleScreenPresenterImpl(this , new MockScheduleScreenProvider());
+        scheduleScreenPresenter = new ScheduleScreenPresenterImpl(this , new RetrofitScheduleScreenProvider());
+//        scheduleScreenPresenter = new ScheduleScreenPresenterImpl(this , new MockScheduleScreenProvider());
 
 
         afterRecycler.setLayoutManager(layoutManager);
