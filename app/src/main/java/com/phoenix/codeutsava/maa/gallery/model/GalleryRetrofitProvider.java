@@ -23,9 +23,7 @@ public class GalleryRetrofitProvider implements GalleryProvider {
     private GalleryApi galleryApi;
     private Retrofit retrofit;
 
-    @Override
-    public void requestGallery(String fcm, final GalleryCallBack galleryCallBack) {
-
+    public GalleryRetrofitProvider() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -40,9 +38,14 @@ public class GalleryRetrofitProvider implements GalleryProvider {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
+    }
+
+    @Override
+    public void requestGallery( final GalleryCallBack galleryCallBack) {
+
         galleryApi = retrofit.create(GalleryApi.class);
 
-Call<GalleryData>galleryDataCall=galleryApi.getGAllery(fcm);
+Call<GalleryData>galleryDataCall=galleryApi.getGAllery();
         galleryDataCall.enqueue(new Callback<GalleryData>() {
             @Override
             public void onResponse(Call<GalleryData> call, Response<GalleryData> response) {

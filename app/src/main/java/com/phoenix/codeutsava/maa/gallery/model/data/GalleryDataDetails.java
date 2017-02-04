@@ -1,5 +1,12 @@
 package com.phoenix.codeutsava.maa.gallery.model.data;
 
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.phoenix.codeutsava.maa.R;
+
 /**
  * Created by aman on 4/2/17.
  */
@@ -28,4 +35,25 @@ public class GalleryDataDetails {
         this.video_name = video_name;
         this.video_url = video_url;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

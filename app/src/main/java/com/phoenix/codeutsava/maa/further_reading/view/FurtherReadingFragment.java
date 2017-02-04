@@ -11,12 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.phoenix.codeutsava.maa.R;
 import com.phoenix.codeutsava.maa.further_reading.model.FurtherReadingRetrofitProvider;
+import com.phoenix.codeutsava.maa.further_reading.model.data.FurtherReadingDataDetails;
 import com.phoenix.codeutsava.maa.further_reading.presenter.FurtherReadingPresenter;
 import com.phoenix.codeutsava.maa.helper.SharedPrefs;
 import com.phoenix.codeutsava.maa.further_reading.presenter.FurtherReadingPresenterImpl;
+
+import java.util.List;
+
 import butterknife.BindView;
 
 /**
@@ -27,7 +32,7 @@ import butterknife.BindView;
  * Use the {@link FurtherReadingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FurtherReadingFragment extends Fragment {
+public class FurtherReadingFragment extends Fragment implements FurtherReadingView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -38,14 +43,10 @@ public class FurtherReadingFragment extends Fragment {
 
 
     ProgressBar progressBar;
-
-
-
     private FurtherReadingAdapter furtherReadingAdapter;
     private LinearLayoutManager linearLayoutManager;
     private FurtherReadingPresenter furtherReadingPresenter;
-    private SharedPrefs sharedPrefs;
-    private String access_token;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -90,22 +91,48 @@ public class FurtherReadingFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_further_reading, container, false);
         progressBar= (ProgressBar)view.findViewById(R.id.furtherReading_progressBar);
+        furtherReadingPresenter=new FurtherReadingPresenterImpl(this, new FurtherReadingRetrofitProvider());
+        furtherReadingAdapter = new FurtherReadingAdapter(getContext(), this);
 
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(furtherReadingAdapter);
+        furtherReadingPresenter.requestFurtherReading();
         return view;
     }
-   /* furtherReadingPresenter= new FurtherReadingPresenterImpl(this,new FurtherReadingRetrofitProvider());
-
-    furtherReadingAdapter = new FurtherReadingAdapter(getContext(), this);
-
-    linearLayoutManager = new LinearLayoutManager(getContext());
-    recyclerView.setLayoutManager(linearLayoutManager);
-    recyclerView.setAdapter(FurtherReadingAdapter);
-    furtherReadingPresenter.requestFurtherReading();
-*/
 
 
+    @Override
+    public void showLoading(boolean show) {
+        if (show) {
+            progressBar.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
 
 
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+
+
+        Toast.makeText(getContext(), "" + message, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onVerified(List<FurtherReadingDataDetails> furtherReadingDataDetailsList) {
+
+        furtherReadingAdapter.setData(furtherReadingDataDetailsList);
+        furtherReadingAdapter.notifyDataSetChanged();
+
+
+
+
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -117,12 +144,7 @@ public class FurtherReadingFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+
     }
 
     @Override

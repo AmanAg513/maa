@@ -21,8 +21,8 @@ public class GalleryPresenterImpl implements GalleryPresenter {
     }
 
     @Override
-    public void requestGallery(String fcm) {
-        galleryProvider.requestGallery(fcm, new GalleryCallBack() {
+    public void requestGallery() {
+        galleryProvider.requestGallery( new GalleryCallBack() {
             @Override
             public void onSuccess(GalleryData galleryData) {
                 if (galleryData.getSuccess()) {

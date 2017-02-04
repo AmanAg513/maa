@@ -4,11 +4,27 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.phoenix.codeutsava.maa.R;
+import com.phoenix.codeutsava.maa.further_reading.model.FurtherReadingRetrofitProvider;
+import com.phoenix.codeutsava.maa.further_reading.presenter.FurtherReadingPresenter;
+import com.phoenix.codeutsava.maa.further_reading.presenter.FurtherReadingPresenterImpl;
+import com.phoenix.codeutsava.maa.further_reading.view.FurtherReadingAdapter;
+import com.phoenix.codeutsava.maa.gallery.model.GalleryRetrofitProvider;
+import com.phoenix.codeutsava.maa.gallery.model.data.GalleryDataDetails;
+import com.phoenix.codeutsava.maa.gallery.presenter.GalleryPresenter;
+import com.phoenix.codeutsava.maa.gallery.presenter.GalleryPresenterImpl;
+
+import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,11 +34,23 @@ import com.phoenix.codeutsava.maa.R;
  * Use the {@link GalleryFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GalleryFragment extends Fragment {
+public class GalleryFragment extends Fragment implements GalleryView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+
+
+    @BindView(R.id.gallery_recycler)
+    RecyclerView recyclerView;
+
+
+    ProgressBar progressBar;
+    private GalleryAdapter galleryAdapter;
+    private LinearLayoutManager linearLayoutManager;
+    private GalleryPresenter galleryPresenter;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -64,8 +92,18 @@ public class GalleryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gallery, container, false);
+        View view =inflater.inflate(R.layout.fragment_gallery, container, false);
+        progressBar= (ProgressBar)view.findViewById(R.id.gallery_progressBar);
+        galleryPresenter=new GalleryPresenterImpl(this, new GalleryRetrofitProvider());
+        galleryAdapter = new GalleryAdapter(this,getContext());
+
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(galleryAdapter);
+        galleryPresenter.requestGallery();
+
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -75,15 +113,42 @@ public class GalleryFragment extends Fragment {
         }
     }
 
+
+    @Override
+    public void showLoading(boolean show) {
+        if (show) {
+            progressBar.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
+
+
+
+
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(getContext(), "" + message, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onVerified(List<GalleryDataDetails> galleryDataDetailsList) {
+
+        galleryAdapter.setData(galleryDataDetailsList);
+        galleryAdapter.notifyDataSetChanged();
+
+
+
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+
     }
 
     @Override
