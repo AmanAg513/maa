@@ -6,19 +6,25 @@ package com.phoenix.codeutsava.maa.vaccination_schedule.model.data;
 
 public class BeforeBirthListDetails {
 
-    private String vaccination_name;
-    private String vaccination_time;
+    private String name;
+    private String data;
+    private String date;
 
-    public BeforeBirthListDetails(String vaccination_name, String vaccination_time) {
-        this.vaccination_name = vaccination_name;
-        this.vaccination_time = vaccination_time;
+    public BeforeBirthListDetails(String name, String data, String date) {
+        this.name = name;
+        this.data = data;
+        this.date = date;
     }
 
-    public String getVaccination_name() {
-        return vaccination_name;
+    public String getName() {
+        return name;
     }
 
-    public String getVaccination_time() {
-        return vaccination_time;
+    public String getData() {
+        return data;
+    }
+
+    public String getDate() {
+        return date;
     }
 }

@@ -10,17 +10,14 @@ public class ScheduleScreenData {
 
     private boolean success;
     private String message;
-    private List<AfterBirthListDetails> afterBirthListDetails;
-    private List<BeforeBirthListDetails> beforeBirthListDetails;
+    private List<AfterBirthListDetails> after;
+    private List<BeforeBirthListDetails> before;
 
-    public ScheduleScreenData(boolean success, String message,
-                              List<AfterBirthListDetails> afterBirthListDetails,
-                              List<BeforeBirthListDetails> beforeBirthListDetails)
-    {
+    public ScheduleScreenData(boolean success, String message, List<AfterBirthListDetails> after, List<BeforeBirthListDetails> before) {
         this.success = success;
         this.message = message;
-        this.afterBirthListDetails = afterBirthListDetails;
-        this.beforeBirthListDetails = beforeBirthListDetails;
+        this.after = after;
+        this.before = before;
     }
 
     public boolean isSuccess() {
@@ -31,11 +28,11 @@ public class ScheduleScreenData {
         return message;
     }
 
-    public List<AfterBirthListDetails> getAfterBirthListDetails() {
-        return afterBirthListDetails;
+    public List<AfterBirthListDetails> getAfter() {
+        return after;
     }
 
-    public List<BeforeBirthListDetails> getBeforeBirthListDetails() {
-        return beforeBirthListDetails;
+    public List<BeforeBirthListDetails> getBefore() {
+        return before;
     }
 }

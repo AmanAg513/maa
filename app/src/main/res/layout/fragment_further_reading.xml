@@ -15,8 +15,6 @@
             android:id="@+id/furtherReading_recycler"
             >
 
-
-
         </android.support.v7.widget.RecyclerView>
 
         <ProgressBar
