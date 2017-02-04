@@ -21,8 +21,7 @@ public class FurtherReadingRetrofitProvider implements FurtherReadingProvider{
     private FurtherReadingApi furtherReadingApi;
     private Retrofit retrofit;
 
-    @Override
-    public void requestFurtherReading(final FurtherReadingCallBack furtherReadingCallBack) {
+    public FurtherReadingRetrofitProvider() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -36,6 +35,11 @@ public class FurtherReadingRetrofitProvider implements FurtherReadingProvider{
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
+    }
+
+    @Override
+    public void requestFurtherReading(final FurtherReadingCallBack furtherReadingCallBack) {
+
 
       furtherReadingApi = retrofit.create(FurtherReadingApi.class);
 Call<FurtherReadingData> furtherReadingDataCall=furtherReadingApi.getCities();
