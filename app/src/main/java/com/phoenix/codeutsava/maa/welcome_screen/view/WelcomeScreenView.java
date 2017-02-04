@@ -7,7 +7,6 @@ import com.phoenix.codeutsava.maa.welcome_screen.model.data.WelcomeScreenData;
  */
 
 public interface WelcomeScreenView {
-
     void showProgressBar(boolean show);
     void showMessage(WelcomeScreenData welcomeScreenData);
     void showError(String error);

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,8 +46,8 @@ public class Geotag extends Fragment implements OnMapReadyCallback,GeotagView{
 
     private OnFragmentInteractionListener mListener;
     private GoogleMap mMap;
-    private List<DoctorData> datas=new ArrayList<>();
 
+    private List<DoctorData>datas=new ArrayList<>();
 //    @BindView(R.id.maps_progress_bar)
     private ProgressBar progressBar;
     @BindView(R.id.nearest_bin)
@@ -100,6 +101,8 @@ public class Geotag extends Fragment implements OnMapReadyCallback,GeotagView{
         transaction.commit();
 
         fragment.getMapAsync(this);
+        geotagPresenter.requestWelcomeData();
+
 
 
         return view;
@@ -125,19 +128,8 @@ public class Geotag extends Fragment implements OnMapReadyCallback,GeotagView{
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        Log.d("check","onmap");
         mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        geotagPresenter.requestWelcomeData();
-
-        for(int i=1;i<datas.size();i++)
-        {
-            DoctorData doctorData=datas.get(i);
-            LatLng sydney = new LatLng(doctorData.getLatitude(),doctorData.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(sydney).title(doctorData.getName()+"\n"+"91740908579"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(21.24683,81.62202)));
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(11), 3700, null);
-        }
-
     }
 
     @Override
@@ -156,7 +148,16 @@ public class Geotag extends Fragment implements OnMapReadyCallback,GeotagView{
 
     @Override
     public void onDataRecieved(List<DoctorData> doctorDatas) {
-            datas=doctorDatas;
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        datas=doctorDatas;
+        for(int i=1;i<4;i++)
+        {
+            DoctorData doctorData=datas.get(i);
+            LatLng sydney = new LatLng(doctorData.getLatitude(),doctorData.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(sydney).title(doctorData.getName()+"\n"+"91740908579"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(21.24683,81.62202)));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(11), 3700, null);
+        }
     }
 
 

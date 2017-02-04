@@ -23,19 +23,22 @@ public class WelcomeScreenPresenterImpl implements WelcomeScreenPresenter{
 
     @Override
     public void requestWelcomeData() {
-//        welcomeScreenView.showProgressBar(true);
+        Log.d("Response","1");
+        welcomeScreenView.showProgressBar(true);
+        Log.d("Response","2");
         welcomeScreenProvider.requestWelcomeData(new WelcomeScreenCallBack() {
             @Override
             public void onSuccess(WelcomeScreenData welcomeScreenData) {
+                Log.d("Response","3");
                 if(welcomeScreenData.isSuccess())
                 {
+                    Log.d("Response","4");
                     welcomeScreenView.showMessage(welcomeScreenData);
                     welcomeScreenView.showProgressBar(false);
-                    welcomeScreenView.showError("Success");
                 }
-
                 else
                 {
+                    Log.d("Response","5");
                     welcomeScreenView.showProgressBar(false);
                     welcomeScreenView.showError("Something went wrong");
                 }

@@ -21,15 +21,15 @@
         </activity>
         <activity
             android:name=".home.HomePage"
-            android:label="@string/title_activity_home_page">
-
-        </activity>
-        <activity android:name=".welcome_screen.view.WelcomeScreenActivity">
+            android:label="@string/title_activity_home_page"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".welcome_screen.view.WelcomeScreenActivity">
 
         </activity>
     </application>
