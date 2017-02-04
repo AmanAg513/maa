@@ -47,8 +47,8 @@ public class Geotag extends Fragment implements OnMapReadyCallback,GeotagView{
     private GoogleMap mMap;
     private List<DoctorData> datas=new ArrayList<>();
 
-    @BindView(R.id.maps_progress_bar)
-    ProgressBar progressBar;
+//    @BindView(R.id.maps_progress_bar)
+    private ProgressBar progressBar;
     @BindView(R.id.nearest_bin)
     TextView nearest_bin;
 
@@ -91,6 +91,7 @@ public class Geotag extends Fragment implements OnMapReadyCallback,GeotagView{
         View view=inflater.inflate(R.layout.activity_maps, container, false);
 
         ButterKnife.bind(this,view);
+        progressBar = (ProgressBar)view.findViewById(R.id.maps_progress_bar);
         geotagPresenter=new GeotagPresenterImpl(this,new RetrofitGeotagProvider());
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();

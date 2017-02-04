@@ -7,6 +7,8 @@ import com.phoenix.codeutsava.maa.welcome_screen.WelcomeScreenCallBack;
 import com.phoenix.codeutsava.maa.welcome_screen.api.WelcomeScreenRequestApi;
 import com.phoenix.codeutsava.maa.welcome_screen.model.data.WelcomeScreenData;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,6 +26,10 @@ public class RetrofitWelcomeScreenProvider implements WelcomeScreenProvider {
 
     public RetrofitWelcomeScreenProvider()
     {
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build();
+
         Gson gson=new GsonBuilder()
                 .setLenient()
                 .create();
@@ -31,6 +37,7 @@ public class RetrofitWelcomeScreenProvider implements WelcomeScreenProvider {
         retrofit = new Retrofit.Builder()
                 .baseUrl(Urls.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
                 .build();
 
     }
