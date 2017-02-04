@@ -26,10 +26,13 @@ public class GalleryAdapter extends RecyclerView.Adapter <GalleryAdapter.MyViewH
     private Context context;
     private LayoutInflater layoutInflater;
     private GalleryFragment galleryFragmentFragment;
+    private GalleryView galleryView;
 
     public GalleryAdapter(GalleryFragment galleryFragmentFragment, Context context) {
         this.galleryFragmentFragment = galleryFragmentFragment;
         this.context = context;
+        layoutInflater=LayoutInflater.from(context);
+        galleryView=new GalleryFragment();
     }
 
     public void setData(List<GalleryDataDetails> galleryDataDetailsList) {
@@ -65,7 +68,7 @@ public class GalleryAdapter extends RecyclerView.Adapter <GalleryAdapter.MyViewH
         private MyViewHolder(View itemView) {
             super(itemView);
 
-            play = (ImageView) itemView.findViewById(R.id.button1);
+            play = (ImageView)itemView.findViewById(R.id.button1);
             pdf = (TextView) itemView.findViewById(R.id.text1);
 
 

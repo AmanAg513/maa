@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 public interface FurtherReadingApi {
 
     @GET(Urls.REQUEST_PDF)
-    Call<FurtherReadingData> getCities();
+    Call<FurtherReadingData> getPdf();
 
 
 

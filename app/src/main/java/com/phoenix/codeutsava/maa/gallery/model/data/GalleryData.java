@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class GalleryData {
     private String message;
-    private Boolean Success;
+    private boolean success;
     private List<GalleryDataDetails> galleryDataDetailsList;
 
     public String getMessage() {
@@ -20,26 +20,22 @@ public class GalleryData {
         this.message = message;
     }
 
-    public Boolean getSuccess() {
-        return Success;
+    public boolean getSuccess() {
+        return success;
     }
 
-    public void setSuccess(Boolean success) {
-        Success = success;
-    }
+
 
     public List<GalleryDataDetails> getGalleryDataDetailsList() {
         return galleryDataDetailsList;
     }
 
-    public void setGalleryDataDetailsList(List<GalleryDataDetails> galleryDataDetailsList) {
-        this.galleryDataDetailsList = galleryDataDetailsList;
-    }
+
 
     public GalleryData(String message, Boolean success, List<GalleryDataDetails> galleryDataDetailsList) {
 
         this.message = message;
-        Success = success;
+        this.success = success;
         this.galleryDataDetailsList = galleryDataDetailsList;
     }
 }

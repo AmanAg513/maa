@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -99,7 +100,7 @@ public class FurtherReadingFragment extends Fragment implements FurtherReadingVi
         progressBar= (ProgressBar)view.findViewById(R.id.furtherReading_progressBar);
         furtherReadingPresenter=new FurtherReadingPresenterImpl(this, new FurtherReadingRetrofitProvider());
         furtherReadingAdapter = new FurtherReadingAdapter(getContext(), this);
-
+ButterKnife.bind(this,view);
         linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(furtherReadingAdapter);

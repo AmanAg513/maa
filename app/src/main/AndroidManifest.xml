@@ -17,7 +17,11 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".splash_screen.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".home.HomePage"
@@ -28,11 +32,7 @@
 
 
         <activity android:name=".welcome_screen.view.WelcomeScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".login.view.LoginViewImpl">
