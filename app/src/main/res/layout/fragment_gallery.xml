@@ -1,0 +1,36 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.phoenix.codeutsava.maa.gallery.view.GalleryFragment"
+    android:background="#f1a3f0"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gallery_recycler"
+            >
+
+
+
+        </android.support.v7.widget.RecyclerView>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gallery_progressBar"
+            android:layout_centerInParent="true"
+            />
+
+
+    </RelativeLayout>
+
+
+    <!-- TODO: Update blank fragment layout -->
+
+</FrameLayout>
+
