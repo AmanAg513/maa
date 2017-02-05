@@ -3,9 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back3"
+    android:background="#d1447f"
 
     >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="@drawable/back5"
+        android:alpha="0.5"
+
+        />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -43,12 +53,18 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/layout_1"
             android:id="@+id/layout_2"
+
             >
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/txt_welcome"
+                android:text="Welcome to our platform !"
+                android:textSize="20dp"
+                android:padding="30dp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
 
                 />
             <ProgressBar
@@ -73,8 +89,9 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/welcome_button"
             android:text="Start"
-            android:textSize="50dp"
+            android:textSize="40dp"
             android:textColor="#FFFFFF"
+            android:layout_marginBottom="15dp"
             />
 
 

@@ -45,7 +45,18 @@ public class FurtherReadingAdapter extends RecyclerView.Adapter <FurtherReadingA
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final FurtherReadingDataDetails furtherReadingDataDetails=DataList.get(position);
         holder.pdf.setText(furtherReadingDataDetails.getPdf_name());
-
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                furtherReadingFragment.view();
+            }
+        });
+        holder.download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                furtherReadingFragment.download();
+            }
+        });
 
        // holder.view.setOnClickListener();
        // holder.download.setOnClickListener();
@@ -56,6 +67,8 @@ public class FurtherReadingAdapter extends RecyclerView.Adapter <FurtherReadingA
 
 
         View itemView = layoutInflater.inflate(R.layout.further_reading_item, parent, false);
+
+
         return new MyViewHolder(itemView);
 
     }

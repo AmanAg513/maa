@@ -24,6 +24,7 @@ import com.phoenix.codeutsava.maa.helper.Keys;
 import com.phoenix.codeutsava.maa.home_page_vaccines_1.view.HomeFragment;
 import com.phoenix.codeutsava.maa.further_reading.view.FurtherReadingFragment;
 import com.phoenix.codeutsava.maa.gallery.view.GalleryFragment;
+import com.phoenix.codeutsava.maa.home_page_vaccines_1.view.FirstVaccineFragment;
 import com.phoenix.codeutsava.maa.maps.view.Geotag;
 import com.phoenix.codeutsava.maa.vaccination_schedule.view.ScheduleScreenFragment;
 
@@ -38,6 +39,9 @@ public class HomePage extends AppCompatActivity
         MultiDex.install(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        setFragment(new FirstVaccineFragment(),"Geo");
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
