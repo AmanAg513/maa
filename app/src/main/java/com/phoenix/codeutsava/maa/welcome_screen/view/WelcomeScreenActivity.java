@@ -58,6 +58,7 @@ public class WelcomeScreenActivity extends Activity implements WelcomeScreenView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
         ButterKnife.bind(this);
+        sharedPrefs=new SharedPrefs(this);
         textView=(TextView)findViewById(R.id.txt_welcome);
         button.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,6 +1,7 @@
 package com.phoenix.codeutsava.maa.gallery.view;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.phoenix.codeutsava.maa.R;
 import com.phoenix.codeutsava.maa.further_reading.model.data.FurtherReadingDataDetails;
 import com.phoenix.codeutsava.maa.further_reading.view.FurtherReadingFragment;
 import com.phoenix.codeutsava.maa.gallery.model.data.GalleryDataDetails;
+import com.phoenix.codeutsava.maa.helper.Keys;
 import com.phoenix.codeutsava.maa.home.HomePage;
 
 import java.util.ArrayList;
@@ -41,19 +43,23 @@ public class GalleryAdapter extends RecyclerView.Adapter <GalleryAdapter.MyViewH
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         final GalleryDataDetails galleryDetails=DataList.get(position);
         holder.pdf.setText(galleryDetails.getVideo_name());
         holder.play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (context instanceof HomePage) {
-                    ((HomePage) context).playVideo(galleryDetails.getVideo_url());
+
+//                    ((HomePage) context).playVideo(galleryDetails.getVideo_url());
+                    VidPlayer vidPlayer = new VidPlayer();
+                    Bundle args = new Bundle();
+                    args.putString(Keys.KEY_VIDEO_URL,DataList.get(position).getVideo_url());
+                    vidPlayer.setArguments(args);
+                    ((HomePage) context).addFragment(vidPlayer,"Player");
                 }
             }
         });
-
-
     }
 
     @Override

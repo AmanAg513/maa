@@ -13,6 +13,7 @@ import android.widget.VideoView;
 
 
 import com.phoenix.codeutsava.maa.R;
+import com.phoenix.codeutsava.maa.helper.Keys;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,7 +54,7 @@ public class VidPlayer extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam1 = getArguments().getString(Keys.KEY_VIDEO_URL);
         }
     }
 

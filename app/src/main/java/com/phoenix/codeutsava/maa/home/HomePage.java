@@ -40,8 +40,6 @@ public class HomePage extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        setFragment(new FirstVaccineFragment(),"Geo");
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -50,6 +48,7 @@ public class HomePage extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+//        setFragment(new FirstVaccineFragment(),"Vaccine");
         setFragment(new HomeFragment(),"Home");
     }
 
@@ -113,11 +112,6 @@ public class HomePage extends AppCompatActivity
 
     }
 
-    public void playVideo(String video_url) {
-        Bundle bundle = new Bundle();
-        bundle.putInt(Keys.KEY_CATEGORY_ID, video_url);
-        VidPlayer vidPlayer=new VidPlayer();
-        vidPlayer.setArguments(bundle);
-        addFragment(new VidPlayer(),"Player");
-    }
+
+
 }

@@ -1,6 +1,7 @@
 package com.phoenix.codeutsava.maa.home_page_vaccines_1.view;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.phoenix.codeutsava.maa.R;
+import com.phoenix.codeutsava.maa.gallery.view.VidPlayer;
+import com.phoenix.codeutsava.maa.helper.Keys;
+import com.phoenix.codeutsava.maa.home.HomePage;
 import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.data.HomeData;
 import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.data.HomeListDetails;
 import com.phoenix.codeutsava.maa.vaccination_schedule.view.AfterBirthListAdapter;
@@ -45,7 +49,7 @@ public class HomeDetailsListAdapter extends RecyclerView.Adapter<HomeDetailsList
     }
 
     @Override
-    public void onBindViewHolder(HomeDetailsListAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(HomeDetailsListAdapter.MyViewHolder holder, final int position) {
         HomeListDetails homeListDetails=homeDatas.get(position);
         if(position==homeDatas.size()-1)
             holder.line.setVisibility(View.GONE);
@@ -53,6 +57,16 @@ public class HomeDetailsListAdapter extends RecyclerView.Adapter<HomeDetailsList
         holder.complete.setText(""+homeListDetails.getNo_read()+" out of 4 read");
         holder.text.setText(""+homeListDetails.getData());
         holder.title.setText(""+homeListDetails.getTitle());
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirstVaccineFragment firstVaccineFragment = new FirstVaccineFragment();
+                Bundle args = new Bundle();
+                args.putString(Keys.KEY_PagerId,homeDatas.get(position).getId());
+                firstVaccineFragment.setArguments(args);
+                ((HomePage) context).addFragment(firstVaccineFragment,"Pager");
+            }
+        });
     }
 
     @Override

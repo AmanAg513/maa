@@ -7,6 +7,7 @@ package com.phoenix.codeutsava.maa.helper;
 public class Keys {
 
 
-    public class KEY_CATEGORY_ID {
-    }
+    public static final String KEY_VIDEO_URL ="url";
+
+    public static final String KEY_PagerId="abc";
 }

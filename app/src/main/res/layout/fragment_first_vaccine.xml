@@ -12,12 +12,11 @@
         android:background="#4cd47f"
         android:alpha="0.5"
         >
-
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/baby1"
-
+            android:scaleType="fitXY"
             />
     </RelativeLayout>
 

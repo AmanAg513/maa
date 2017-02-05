@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.phoenix.codeutsava.maa.R;
+import com.phoenix.codeutsava.maa.helper.Keys;
 import com.phoenix.codeutsava.maa.helper.SharedPrefs;
 import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.FirstVaccineProvider;
 import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.MockFirstVaccineProvider;
@@ -74,7 +75,7 @@ public class FirstVaccineFragment extends Fragment implements FirstVaccineView {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam1 = getArguments().getString(Keys.KEY_PagerId);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -83,14 +84,15 @@ public class FirstVaccineFragment extends Fragment implements FirstVaccineView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         View view= inflater.inflate(R.layout.fragment_first_vaccine, container, false);
         progressBar = (ProgressBar)view.findViewById(R.id.first_progressBar);
         sharedPrefs = new SharedPrefs(getContext());
 
         viewPagerAdapter = new ViewPagerAdapter(getContext());
         viewPager=(ViewPager)view.findViewById(R.id.first_viewPager);
-//        firstVaccinePresenter= new FirstVaccinePresenterImpl(this, new RetrofitFirstVaccineProvider());
-        firstVaccinePresenter= new FirstVaccinePresenterImpl(this, new MockFirstVaccineProvider());
+        firstVaccinePresenter= new FirstVaccinePresenterImpl(this, new RetrofitFirstVaccineProvider());
+//        firstVaccinePresenter= new FirstVaccinePresenterImpl(this, new MockFirstVaccineProvider());
 
 
         firstVaccinePresenter.requestFirstVaccineData();
