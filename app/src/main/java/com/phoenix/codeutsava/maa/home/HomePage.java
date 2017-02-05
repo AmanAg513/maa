@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import com.phoenix.codeutsava.maa.R;
 import com.phoenix.codeutsava.maa.further_reading.view.FurtherReadingFragment;
 import com.phoenix.codeutsava.maa.gallery.view.GalleryFragment;
+import com.phoenix.codeutsava.maa.home_page_vaccines_1.view.FirstVaccineFragment;
 import com.phoenix.codeutsava.maa.maps.view.Geotag;
 import com.phoenix.codeutsava.maa.vaccination_schedule.view.ScheduleScreenFragment;
 
@@ -34,7 +35,7 @@ public class HomePage extends AppCompatActivity
         MultiDex.install(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setFragment(new Geotag(),"Geo");
+        setFragment(new FirstVaccineFragment(),"Geo");
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
