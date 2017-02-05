@@ -18,6 +18,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.phoenix.codeutsava.maa.R;
+import com.phoenix.codeutsava.maa.discuss.view.Questions;
+import com.phoenix.codeutsava.maa.home_page_vaccines_1.view.HomeFragment;
 import com.phoenix.codeutsava.maa.further_reading.view.FurtherReadingFragment;
 import com.phoenix.codeutsava.maa.gallery.view.GalleryFragment;
 import com.phoenix.codeutsava.maa.home_page_vaccines_1.view.FirstVaccineFragment;
@@ -35,8 +37,8 @@ public class HomePage extends AppCompatActivity
         MultiDex.install(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setFragment(new FirstVaccineFragment(),"Geo");
 
+        setFragment(new FirstVaccineFragment(),"Geo");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -46,6 +48,7 @@ public class HomePage extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        setFragment(new HomeFragment(),"Home");
     }
 
     @Override
@@ -66,18 +69,18 @@ public class HomePage extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            setFragment(new HomeFragment(),"Home");
         } else if (id == R.id.nav_vaccine) {
-            setFragment(new ScheduleScreenFragment(),"Vaccines Schedule");
+            setFragment(new ScheduleScreenFragment(),"Vaccines Scheduled");
         } else if (id == R.id.nav_maps) {
             setFragment(new Geotag(),"Nearby Hospitals");
-
-        } else if (id == R.id.nav_readFurther) {
+        }else if (id == R.id.nav_discuss) {
+            setFragment(new Questions(),"Discussion");
+        }
+        else if (id == R.id.nav_readFurther) {
             setFragment(new FurtherReadingFragment(),"Further Reading");
-
-        } else if (id == R.id.nav_about) {
-            setFragment(new GalleryFragment(),"Gallery");
-
+        } else if (id == R.id.nav_gallery) {
+            setFragment(new GalleryFragment(),"Videos");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

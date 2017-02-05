@@ -3,10 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5d0d9"
+    android:background="#d1447f"
 
     >
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="@drawable/back5"
+        android:alpha="0.5"
+
+        />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -45,6 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/layout_1"
             android:id="@+id/layout_2"
+
             >
 
             <TextView
@@ -53,8 +62,8 @@
                 android:id="@+id/txt_welcome"
                 android:text="Welcome to our platform !"
                 android:textSize="20dp"
-                android:padding="20dp"
-                android:textColor="#8e1c39"
+                android:padding="30dp"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold"
 
                 />

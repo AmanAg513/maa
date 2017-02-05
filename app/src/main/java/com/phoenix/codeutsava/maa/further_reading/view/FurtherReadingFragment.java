@@ -161,12 +161,12 @@ ButterKnife.bind(this,view);
     }
 
 
-    public void download(View v)
+    public void download()
     {
         new DownloadFile().execute("http://maven.apache.org/maven-1.x/maven.pdf", "maven.pdf");
     }
 
-    public void view(View v)
+    public void view()
     {
         File pdfFile = new File(Environment.getExternalStorageDirectory() + "/testthreepdf/" + "maven.pdf");  // -> filename = maven.pdf
         Uri path = Uri.fromFile(pdfFile);

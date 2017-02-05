@@ -78,14 +78,23 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Useful"
-                android:id="@+id/useful"
+                android:id="@+id/useful1"
+                android:textStyle="bold"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/first_button"
+                android:layout_marginBottom="5dp"
                 />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="4 Replies"
-                android:id="@+id/replies"
+                android:id="@+id/replies1"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:background="@drawable/first_button"
                 />
 
 

@@ -1,5 +1,7 @@
 package com.phoenix.codeutsava.maa.home_page_vaccines_1.presenter;
 
+import android.util.Log;
+
 import com.phoenix.codeutsava.maa.home_page_vaccines_1.FirstVaccineCallBack;
 import com.phoenix.codeutsava.maa.home_page_vaccines_1.HomeCallBack;
 import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.FirstVaccineProvider;
@@ -61,16 +63,25 @@ public class FirstVaccinePresenterImpl implements  FirstVaccinePresenter {
 
     @Override
     public void requestHomeData(String fcm) {
+        homeView.showLoading(true);
         homeRequestProvider.requestHomeData(fcm, new HomeCallBack() {
             @Override
             public void onSuccess(HomeData homeData)
             {
-                //yet to be made
+
+             homeView.showLoading(false);
+                if(homeData.isSuccess()) {
+                    Log.d("Check","1");
+                    homeView.onDataReceived(homeData);
+                }
+                else
+                    homeView.showError(homeData.getMessage());
             }
 
             @Override
             public void onFailure() {
-                //yet to be made
+                homeView.showLoading(false);
+                homeView.showError("No Internet Connection");
             }
         });
     }

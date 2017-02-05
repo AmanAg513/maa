@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="265dp"
+        android:layout_height="265dp"
+        android:id="@+id/relative"
+        android:orientation="vertical"
+        android:background="@drawable/circle"
+        android:layout_marginRight="48dp"
+        android:layout_marginEnd="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_marginTop="30dp"
+            android:textSize="18dp"
+            android:layout_width="170dp"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Hello this is Iket Agrawal presenting"
+            android:id="@+id/title"
+            android:layout_alignParentTop="true"
+            />
+        <TextView
+            android:layout_below="@+id/title"
+            android:layout_centerInParent="true"
+            android:textSize="13dp"
+            android:layout_width="225dp"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="Hello this is Iket Agrawal presenting you the best app in codeutsa dfgdfgdfgdfgdfgdfgdf"
+            android:id="@+id/text"
+            />
+        <TextView
+            android:layout_above="@+id/read_button"
+            android:layout_centerInParent="true"
+            android:layout_width="180dp"
+            android:gravity="center"
+            android:text="2 out of 4 completed"
+            android:textStyle="bold"
+            android:id="@+id/complete"
+            android:textColor="#000000"
+            android:layout_height="20dp" />
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="33dp"
+            android:id="@+id/read_button"
+            android:layout_marginBottom="20dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/first_button"
+            android:text="Read"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="18dp"
+                android:id="@+id/line"
+        android:layout_height="150dp"
+                android:background="#b9a9a7"
+        android:layout_below="@+id/relative"
+        android:layout_alignRight="@+id/relative"
+        android:layout_alignEnd="@+id/relative"
+        android:layout_marginRight="118dp"
+        android:layout_marginEnd="118dp" />
+
+</RelativeLayout>

@@ -7,23 +7,23 @@ package com.phoenix.codeutsava.maa.home_page_vaccines_1.model.data;
 public class HomeListDetails {
 
     private String id;
-    private String title;
     private String data;
     private int  no_read;
+    private String title;
 
-    public HomeListDetails(String id, String title, String data, int no_read) {
+    public HomeListDetails(String id, String data, int no_read, String title) {
         this.id = id;
-        this.title = title;
         this.data = data;
         this.no_read = no_read;
-    }
-
-    public String getId() {
-        return id;
+        this.title = title;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getData() {

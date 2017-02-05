@@ -81,8 +81,8 @@ public class DiscussQuestionsAdapter extends RecyclerView.Adapter<DiscussQuestio
             textView_date=(TextView) itemView.findViewById(R.id.date);
             textView_title=(TextView) itemView.findViewById(R.id.title);
             textView_question=(TextView) itemView.findViewById(R.id.question);
-            useful=(Button) itemView.findViewById(R.id.useful);
-            replies=(Button) itemView.findViewById(R.id.replies);
+            useful=(Button) itemView.findViewById(R.id.useful1);
+            replies=(Button) itemView.findViewById(R.id.replies1);
 
 
         }

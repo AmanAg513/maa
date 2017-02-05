@@ -2,6 +2,7 @@ package com.phoenix.codeutsava.maa.welcome_screen.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,8 +12,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.phoenix.codeutsava.maa.R;
+import com.phoenix.codeutsava.maa.helper.SharedPrefs;
 import com.phoenix.codeutsava.maa.helper.image_loader.GlideImageLoader;
 import com.phoenix.codeutsava.maa.helper.image_loader.ImageLoader;
+import com.phoenix.codeutsava.maa.home.HomePage;
+import com.phoenix.codeutsava.maa.login.view.LoginViewImpl;
 import com.phoenix.codeutsava.maa.welcome_screen.model.RetrofitWelcomeScreenProvider;
 import com.phoenix.codeutsava.maa.welcome_screen.model.data.WelcomeScreenData;
 import com.phoenix.codeutsava.maa.welcome_screen.presenter.WelcomeScreenPresenter;
@@ -43,6 +47,7 @@ public class WelcomeScreenActivity extends Activity implements WelcomeScreenView
 
     private WelcomeScreenPresenter welcomeScreenPresenter;
     private ImageLoader imageLoader;
+    private SharedPrefs sharedPrefs;
 
 //    private WelcomeScreenData welcomeScreenData;
 
@@ -54,6 +59,23 @@ public class WelcomeScreenActivity extends Activity implements WelcomeScreenView
         setContentView(R.layout.activity_welcome_screen);
         ButterKnife.bind(this);
         textView=(TextView)findViewById(R.id.txt_welcome);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!sharedPrefs.isLoggedIn())
+                {
+                Intent intent = new Intent(WelcomeScreenActivity.this, LoginViewImpl.class);
+                startActivity(intent);
+                finish();
+                }
+                else{
+                    Intent intent = new Intent(WelcomeScreenActivity.this, HomePage.class);
+                    startActivity(intent);
+                    finish();
+
+                }
+            }
+        });
 //        txtProgressBar=(ProgressBar)findViewById(R.id.txt_progressBar);
 //        progressBar=(ProgressBar)findViewById(R.id.progressBar_welcome);
         welcomeScreenPresenter = new WelcomeScreenPresenterImpl(this, new RetrofitWelcomeScreenProvider());
