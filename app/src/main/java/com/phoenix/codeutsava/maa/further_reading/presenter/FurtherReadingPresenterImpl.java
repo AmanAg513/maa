@@ -28,7 +28,7 @@ public class FurtherReadingPresenterImpl implements FurtherReadingPresenter {
             public void onSuccess(FurtherReadingData furtherReadingData) {
                 if (furtherReadingData.isSuccess()) {
                     furtherReadingView.showLoading(false);
-                    furtherReadingView.onVerified(furtherReadingData.getFurtherReadingDataDetailsList());
+                    furtherReadingView.onVerified(furtherReadingData.getFurtherReadingDataDetails());
                     Log.d("response","presenter ka  call back success");
                 } else {
                     furtherReadingView.showLoading(false);

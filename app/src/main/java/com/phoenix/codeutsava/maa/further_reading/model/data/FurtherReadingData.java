@@ -9,7 +9,16 @@ import java.util.List;
 public class FurtherReadingData {
     private String message;
     private boolean success;
-    private List<FurtherReadingDataDetails> furtherReadingDataDetailsList;
+    private List<FurtherReadingDataDetails> FurtherReadingDataDetails;
+
+    public FurtherReadingData(String message, Boolean success, List<FurtherReadingDataDetails> FurtherReadingDataDetails) {
+
+        this.message = message;
+        this.success = success;
+        this.FurtherReadingDataDetails = FurtherReadingDataDetails;
+    }
+
+
 
     public boolean isSuccess() {
         return success;
@@ -22,21 +31,13 @@ public class FurtherReadingData {
         return message;
     }
 
-    public List<FurtherReadingDataDetails> getFurtherReadingDataDetailsList() {
-        return furtherReadingDataDetailsList;
+    public List<FurtherReadingDataDetails> getFurtherReadingDataDetails() {
+        return FurtherReadingDataDetails;
     }
 
 
 
-    public void setMessage(String message) {
-        this.message = message;
 
-    }
 
-    public FurtherReadingData(String message, Boolean success, List<FurtherReadingDataDetails> furtherReadingDataDetailsList) {
 
-        this.message = message;
-        this.success = success;
-        this.furtherReadingDataDetailsList = furtherReadingDataDetailsList;
-    }
 }

@@ -16,9 +16,6 @@ public class GalleryData {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public boolean getSuccess() {
         return success;

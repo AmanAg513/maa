@@ -47,9 +47,9 @@ public class LoginRetrofitProvider implements LoginProvider{
     }
 
     @Override
-    public void requestLogin(String name, String mobile, String fcm, final LoginCallBack loginUsCallback) {
+    public void requestLogin(String name, String mobile, String fcm,String dueDate, final LoginCallBack loginUsCallback) {
 
-        Call<LoginData> loginDataCall = loginApi.requestLogin(name, mobile, fcm);
+        Call<LoginData> loginDataCall = loginApi.requestLogin(name, mobile, fcm,dueDate);
         loginDataCall.enqueue(new Callback<LoginData>() {
             @Override
             public void onResponse(Call<LoginData> call, Response<LoginData> response) {

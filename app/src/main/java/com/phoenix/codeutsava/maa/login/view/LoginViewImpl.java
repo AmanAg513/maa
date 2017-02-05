@@ -35,7 +35,8 @@ public class LoginViewImpl extends Activity implements LoginView  {
     Button otpButton;
     TextView text;
     TextView text2;
-
+    EditText dueDate;
+String dueDate1;
     String name1;
     EditText name;
     Button login_button;
@@ -65,6 +66,7 @@ public class LoginViewImpl extends Activity implements LoginView  {
         login_button = (Button) findViewById(R.id.button1);
         name = (EditText) findViewById(R.id.editText1);
         mobile = (EditText) findViewById(R.id.editText2);
+        dueDate = (EditText) findViewById(R.id.editText3);
         text=(TextView) findViewById(R.id.textView);
         otpButton=(Button) findViewById(R.id.button2);
         otp=(EditText) findViewById(R.id.editText3);
@@ -75,6 +77,7 @@ public class LoginViewImpl extends Activity implements LoginView  {
             public void onClick(View v) {
                 name1 = name.getText().toString();
                 mobile1 = mobile.getText().toString();
+                dueDate1=dueDate.getText().toString();
 
                 Log.d("Response", "b1");
                 if (name1.equals("") || name1.equals(null)) {
@@ -87,7 +90,11 @@ public class LoginViewImpl extends Activity implements LoginView  {
                     mobile.setError("Invalid Mobile No.");
                     mobile.requestFocus();
                 }
+                else if (dueDate1.equals("") || dueDate1.equals(null)) {
+                    dueDate.setError("Please fill mobile");
+                    dueDate.requestFocus();
 
+                }
                 if ((name1.equals("") || name1.equals(null)) ||
                         ((mobile1.equals("") || mobile1.equals(null)) || mobile1.length() != 10)
 
@@ -98,7 +105,19 @@ public class LoginViewImpl extends Activity implements LoginView  {
 
                 } else {
 
-                    loginScreenPresenter.requestLogin(name1, mobile1, MyApplication.getFcm());
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            text2.setVisibility(View.VISIBLE);
+                            login_button.setEnabled(false);
+
+
+                        }
+                    },30000);
+
+                    login_button.setText("resend otp");
+
+                    loginScreenPresenter.requestLogin(name1, mobile1, MyApplication.getFcm(),dueDate1);
                     Log.d("response","fcm call");
 
                     sharedPrefs = new SharedPrefs(LoginViewImpl.this);
@@ -130,15 +149,7 @@ public class LoginViewImpl extends Activity implements LoginView  {
 
 
 
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            text2.setVisibility(View.VISIBLE);
-                            otpButton.setEnabled(false);
 
-
-                        }
-                    },30000);
 
                 }
             }

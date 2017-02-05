@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.phoenix.codeutsava.maa.discuss.view.Questions"
-    android:background="#"
+    android:background="#fd4e7b"
     >
 
     <LinearLayout
