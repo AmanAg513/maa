@@ -78,14 +78,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Useful"
-                android:id="@+id/useful"
+                android:id="@+id/useful1"
                 />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="4 Replies"
-                android:id="@+id/replies"
+                android:id="@+id/replies1"
                 />
 
 
