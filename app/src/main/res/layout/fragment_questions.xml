@@ -2,12 +2,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.phoenix.codeutsava.maa.discuss.Questions">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.phoenix.codeutsava.maa.discuss.view.Questions"
+    android:background="#fd4e7b"
+    >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
+        app:cardCornerRadius="10dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        >
 
-        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -18,19 +32,58 @@
                 android:id="@+id/welc"
                 android:text="Hello,Welcome to our forum."
                 android:layout_alignParentTop="true"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_horizontal"
+                android:textColor="#3a7f54"
+                android:textSize="22dp"
+                />
             <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_below="@+id/welc"
-            android:text="Have some questions to ask??"
-            android:layout_gravity="center"
-            />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/welc"
+                android:text="Have some questions to ask ?"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="9dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/discuss_text"
+                android:textSize="20dp"
+                android:textColor="#3a7f54"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:clickable="true"
+                />
 
 
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:id="@+id/quesRecycler"
+            >
+
+            </android.support.v7.widget.RecyclerView>
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/quesProgressBar"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </FrameLayout>
