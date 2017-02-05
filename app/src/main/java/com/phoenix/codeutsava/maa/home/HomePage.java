@@ -36,9 +36,6 @@ public class HomePage extends AppCompatActivity
         MultiDex.install(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setFragment(new Questions(),"Geo");
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -47,6 +44,7 @@ public class HomePage extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        setFragment(new HomeFragment(),"Home");
     }
 
     @Override
@@ -67,18 +65,18 @@ public class HomePage extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            setFragment(new HomeFragment(),"Home");
         } else if (id == R.id.nav_vaccine) {
-            setFragment(new ScheduleScreenFragment(),"Vaccines Schedule");
+            setFragment(new ScheduleScreenFragment(),"Vaccines Scheduled");
         } else if (id == R.id.nav_maps) {
             setFragment(new Geotag(),"Nearby Hospitals");
-
-        } else if (id == R.id.nav_readFurther) {
+        }else if (id == R.id.nav_discuss) {
+            setFragment(new Questions(),"Discussion");
+        }
+        else if (id == R.id.nav_readFurther) {
             setFragment(new FurtherReadingFragment(),"Further Reading");
-
-        } else if (id == R.id.nav_about) {
-            setFragment(new GalleryFragment(),"Gallery");
-
+        } else if (id == R.id.nav_gallery) {
+            setFragment(new GalleryFragment(),"Videos");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

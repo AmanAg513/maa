@@ -86,28 +86,18 @@ public class LoginViewImpl extends Activity implements LoginView  {
                     mobile.requestFocus();
                 }
                 else if (dueDate1.equals("") || dueDate1.equals(null)) {
-                    dueDate.setError("Please fill mobile");
+                    dueDate.setError("Please fill date");
                     dueDate.requestFocus();
                 }
                 else {
 
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            text2.setVisibility(View.VISIBLE);
-                            login_button.setEnabled(false);
-
-                        }
-                    },30000);
                     login_button.setText("resend otp");
+                    login_button.setClickable(false);
                     loginScreenPresenter.requestLogin(name1, mobile1, MyApplication.getFcm(),dueDate1);
                     sharedPrefs = new SharedPrefs(LoginViewImpl.this);
                     sharedPrefs.setFcm( MyApplication.getFcm());
                 }
-
-
-
-            }
+       }
         });
 
         otpButton.setOnClickListener(new View.OnClickListener() {
