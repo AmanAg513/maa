@@ -22,6 +22,8 @@ public class Urls {
     public static final String REQUEST_SCHEDULE_SCREEN = "vaccin/";
     public static final String REQUEST_PDF = "pdf/";
     public static final String REQUEST_GALLERY = "video/";
+    public static final String REQUEST_DISCUSS_QUESTION = "discuss_question/";
+
 
 
 }
