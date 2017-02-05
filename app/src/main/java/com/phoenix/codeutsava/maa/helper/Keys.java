@@ -7,4 +7,6 @@ package com.phoenix.codeutsava.maa.helper;
 public class Keys {
 
 
+    public class KEY_CATEGORY_ID {
+    }
 }

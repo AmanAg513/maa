@@ -13,6 +13,7 @@ import com.phoenix.codeutsava.maa.R;
 import com.phoenix.codeutsava.maa.further_reading.model.data.FurtherReadingDataDetails;
 import com.phoenix.codeutsava.maa.further_reading.view.FurtherReadingFragment;
 import com.phoenix.codeutsava.maa.gallery.model.data.GalleryDataDetails;
+import com.phoenix.codeutsava.maa.home.HomePage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,9 +44,14 @@ public class GalleryAdapter extends RecyclerView.Adapter <GalleryAdapter.MyViewH
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final GalleryDataDetails galleryDetails=DataList.get(position);
         holder.pdf.setText(galleryDetails.getVideo_name());
-
-
-         //holder.play.setOnClickListener();
+        holder.play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (context instanceof HomePage) {
+                    ((HomePage) context).playVideo(galleryDetails.getVideo_url());
+                }
+            }
+        });
 
 
     }
@@ -69,10 +75,8 @@ public class GalleryAdapter extends RecyclerView.Adapter <GalleryAdapter.MyViewH
 
         private MyViewHolder(View itemView) {
             super(itemView);
-
             play = (ImageView)itemView.findViewById(R.id.button1);
             pdf = (TextView) itemView.findViewById(R.id.text1);
-
 
         }
 

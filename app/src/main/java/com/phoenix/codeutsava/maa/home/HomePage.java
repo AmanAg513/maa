@@ -19,6 +19,8 @@ import android.view.MenuItem;
 
 import com.phoenix.codeutsava.maa.R;
 import com.phoenix.codeutsava.maa.discuss.view.Questions;
+import com.phoenix.codeutsava.maa.gallery.view.VidPlayer;
+import com.phoenix.codeutsava.maa.helper.Keys;
 import com.phoenix.codeutsava.maa.home_page_vaccines_1.view.HomeFragment;
 import com.phoenix.codeutsava.maa.further_reading.view.FurtherReadingFragment;
 import com.phoenix.codeutsava.maa.gallery.view.GalleryFragment;
@@ -107,4 +109,11 @@ public class HomePage extends AppCompatActivity
 
     }
 
+    public void playVideo(String video_url) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(Keys.KEY_CATEGORY_ID, video_url);
+        VidPlayer vidPlayer=new VidPlayer();
+        vidPlayer.setArguments(bundle);
+        addFragment(new VidPlayer(),"Player");
+    }
 }

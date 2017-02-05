@@ -40,12 +40,8 @@ public class GalleryFragment extends Fragment implements GalleryView {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-
-
     @BindView(R.id.gallery_recycler)
     RecyclerView recyclerView;
-
 
     ProgressBar progressBar;
     private GalleryAdapter galleryAdapter;
@@ -91,8 +87,7 @@ public class GalleryFragment extends Fragment implements GalleryView {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_gallery, container, false);
         progressBar= (ProgressBar)view.findViewById(R.id.gallery_progressBar);
         galleryPresenter=new GalleryPresenterImpl(this, new GalleryRetrofitProvider());
@@ -102,8 +97,6 @@ public class GalleryFragment extends Fragment implements GalleryView {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(galleryAdapter);
         galleryPresenter.requestGallery();
-
-
         return view;
     }
 
@@ -123,17 +116,11 @@ public class GalleryFragment extends Fragment implements GalleryView {
         } else {
             progressBar.setVisibility(View.GONE);
         }
-
-
-
-
-
     }
 
     @Override
     public void showMessage(String message) {
         Toast.makeText(getContext(), "" + message, Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
@@ -141,9 +128,6 @@ public class GalleryFragment extends Fragment implements GalleryView {
 
         galleryAdapter.setData(galleryDataDetailsList);
         galleryAdapter.notifyDataSetChanged();
-
-
-
     }
 
     @Override
@@ -151,6 +135,7 @@ public class GalleryFragment extends Fragment implements GalleryView {
         super.onAttach(context);
 
     }
+
 
     @Override
     public void onDetach() {
