@@ -78,11 +78,11 @@
                     android:textSize="@dimen/small_text_size" />
 
                 <EditText
-                    android:id="@+id/editText3"
+                    android:id="@+id/editText4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:hint="Due Date        YYY/MM/DD"
+                    android:hint="Due Date        YYYY/MM/DD"
                     android:inputType="phone"
                     android:textSize="@dimen/small_text_size" />
                 <EditText

@@ -17,22 +17,13 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".splash_screen.SplashScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".home.HomePage"
-            android:label="@string/title_activity_home_page"
-           > <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:label="@string/title_activity_home_page">
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
-            </activity>
+    </activity>
 
 
         <activity android:name=".welcome_screen.view.WelcomeScreenActivity">
@@ -40,6 +31,12 @@
         </activity>
 
         <activity android:name=".login.view.LoginViewImpl">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
 
     </application>
