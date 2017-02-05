@@ -19,6 +19,8 @@ import android.view.MenuItem;
 
 import com.phoenix.codeutsava.maa.R;
 import com.phoenix.codeutsava.maa.home_page_vaccines_1.view.HomeFragment;
+import com.phoenix.codeutsava.maa.further_reading.view.FurtherReadingFragment;
+import com.phoenix.codeutsava.maa.gallery.view.GalleryFragment;
 import com.phoenix.codeutsava.maa.maps.view.Geotag;
 import com.phoenix.codeutsava.maa.vaccination_schedule.view.ScheduleScreenFragment;
 
@@ -71,8 +73,10 @@ public class HomePage extends AppCompatActivity
             setFragment(new Geotag(),"Nearby Hospitals");
 
         } else if (id == R.id.nav_readFurther) {
+            setFragment(new FurtherReadingFragment(),"Further Reading");
 
         } else if (id == R.id.nav_about) {
+            setFragment(new GalleryFragment(),"Gallery");
 
         }
 

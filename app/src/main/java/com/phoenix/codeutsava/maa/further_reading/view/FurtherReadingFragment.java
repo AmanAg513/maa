@@ -1,8 +1,12 @@
 package com.phoenix.codeutsava.maa.further_reading.view;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,13 +15,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.phoenix.codeutsava.maa.R;
 import com.phoenix.codeutsava.maa.further_reading.model.FurtherReadingRetrofitProvider;
+import com.phoenix.codeutsava.maa.further_reading.model.data.FurtherReadingDataDetails;
 import com.phoenix.codeutsava.maa.further_reading.presenter.FurtherReadingPresenter;
 import com.phoenix.codeutsava.maa.helper.SharedPrefs;
 import com.phoenix.codeutsava.maa.further_reading.presenter.FurtherReadingPresenterImpl;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +39,7 @@ import butterknife.BindView;
  * Use the {@link FurtherReadingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FurtherReadingFragment extends Fragment {
+public class FurtherReadingFragment extends Fragment implements FurtherReadingView {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -38,14 +50,10 @@ public class FurtherReadingFragment extends Fragment {
 
 
     ProgressBar progressBar;
-
-
-
     private FurtherReadingAdapter furtherReadingAdapter;
     private LinearLayoutManager linearLayoutManager;
     private FurtherReadingPresenter furtherReadingPresenter;
-    private SharedPrefs sharedPrefs;
-    private String access_token;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -90,22 +98,48 @@ public class FurtherReadingFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_further_reading, container, false);
         progressBar= (ProgressBar)view.findViewById(R.id.furtherReading_progressBar);
-
+        furtherReadingPresenter=new FurtherReadingPresenterImpl(this, new FurtherReadingRetrofitProvider());
+        furtherReadingAdapter = new FurtherReadingAdapter(getContext(), this);
+ButterKnife.bind(this,view);
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(furtherReadingAdapter);
+        furtherReadingPresenter.requestFurtherReading();
         return view;
     }
-   /* furtherReadingPresenter= new FurtherReadingPresenterImpl(this,new FurtherReadingRetrofitProvider());
-
-    furtherReadingAdapter = new FurtherReadingAdapter(getContext(), this);
-
-    linearLayoutManager = new LinearLayoutManager(getContext());
-    recyclerView.setLayoutManager(linearLayoutManager);
-    recyclerView.setAdapter(FurtherReadingAdapter);
-    furtherReadingPresenter.requestFurtherReading();
-*/
 
 
+    @Override
+    public void showLoading(boolean show) {
+        if (show) {
+            progressBar.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
 
 
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+
+
+        Toast.makeText(getContext(), "" + message, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onVerified(List<FurtherReadingDataDetails> furtherReadingDataDetailsList) {
+
+        furtherReadingAdapter.setData(furtherReadingDataDetailsList);
+        furtherReadingAdapter.notifyDataSetChanged();
+
+
+
+
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -117,18 +151,55 @@ public class FurtherReadingFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+
+    public void download(View v)
+    {
+        new DownloadFile().execute("http://maven.apache.org/maven-1.x/maven.pdf", "maven.pdf");
+    }
+
+    public void view(View v)
+    {
+        File pdfFile = new File(Environment.getExternalStorageDirectory() + "/testthreepdf/" + "maven.pdf");  // -> filename = maven.pdf
+        Uri path = Uri.fromFile(pdfFile);
+        Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
+        pdfIntent.setDataAndType(path, "application/pdf");
+        pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        try{
+            startActivity(pdfIntent);
+        }catch(ActivityNotFoundException e){
+            Toast.makeText(getContext(), "No Application available to view PDF", Toast.LENGTH_SHORT).show();
+        }
+    }
+    private class DownloadFile extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            String fileUrl = "http://maven.apache.org/maven-1.x/maven.pdf";
+            String fileName = "maven.pdf";
+            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+            File folder = new File(extStorageDirectory, "testthreepdf");
+            folder.mkdir();
+            Toast.makeText(getContext(),"Downloading",Toast.LENGTH_LONG).show();
+            File pdfFile = new File(folder, fileName);
+
+            try{
+                pdfFile.createNewFile();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            FileDownloader.downloadFile(fileUrl, pdfFile);
+            return null;
+        }
     }
 
     /**

@@ -15,7 +15,7 @@ public interface GalleryApi {
 
     @GET(Urls.REQUEST_GALLERY)
 
-    Call<GalleryData> getGAllery(@Query("fcm") String fcm);
+    Call<GalleryData> getGAllery();
 
 
 

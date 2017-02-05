@@ -5,42 +5,39 @@ import java.util.List;
 /**
  * Created by aman on 4/2/17.
  */
+
 public class FurtherReadingData {
-  private String message;
-    private Boolean Success;
-  private List<FurtherReadingDataDetails> furtherReadingDataDetailsList;
+    private String message;
+    private boolean success;
+    private List<FurtherReadingDataDetails> FurtherReadingDataDetails;
 
+    public FurtherReadingData(String message, Boolean success, List<FurtherReadingDataDetails> FurtherReadingDataDetails) {
 
-    public Boolean getSuccess() {
-        return Success;
+        this.message = message;
+        this.success = success;
+        this.FurtherReadingDataDetails = FurtherReadingDataDetails;
     }
 
-    public void setSuccess(Boolean success) {
-        Success = success;
+
+
+    public boolean isSuccess() {
+        return success;
     }
+
+
 
     public String getMessage() {
 
         return message;
     }
 
-    public List<FurtherReadingDataDetails> getFurtherReadingDataDetailsList() {
-        return furtherReadingDataDetailsList;
+    public List<FurtherReadingDataDetails> getFurtherReadingDataDetails() {
+        return FurtherReadingDataDetails;
     }
 
-    public void setFurtherReadingDataDetailsList(List<FurtherReadingDataDetails> furtherReadingDataDetailsList) {
-        this.furtherReadingDataDetailsList = furtherReadingDataDetailsList;
-    }
 
-    public void setMessage(String message) {
-        this.message = message;
 
-    }
 
-    public FurtherReadingData(String message, Boolean success, List<FurtherReadingDataDetails> furtherReadingDataDetailsList) {
 
-        this.message = message;
-        Success = success;
-        this.furtherReadingDataDetailsList = furtherReadingDataDetailsList;
-    }
+
 }

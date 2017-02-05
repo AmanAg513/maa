@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.phoenix.codeutsava.maa.R;
 import com.phoenix.codeutsava.maa.helper.MyApplication;
 import com.phoenix.codeutsava.maa.helper.SharedPrefs;
+import com.phoenix.codeutsava.maa.home.HomePage;
 import com.phoenix.codeutsava.maa.login.model.LoginRetrofitProvider;
 import com.phoenix.codeutsava.maa.login.presenter.LoginPresenter;
 import com.phoenix.codeutsava.maa.login.presenter.LoginPresenterImpl;
@@ -29,13 +30,12 @@ import butterknife.ButterKnife;
  */
 public class LoginViewImpl extends Activity implements LoginView  {
 
-
-
     EditText otp;
     Button otpButton;
     TextView text;
     TextView text2;
-
+    EditText dueDate;
+    String dueDate1;
     String name1;
     EditText name;
     Button login_button;
@@ -49,7 +49,6 @@ public class LoginViewImpl extends Activity implements LoginView  {
 
     private SharedPrefs sharedPrefs;
     private ProgressBar progressbar;
-    private LoginRetrofitProvider LoginRetrofitProvider;
     private LoginPresenter loginScreenPresenter;
 
     @Override
@@ -57,14 +56,12 @@ public class LoginViewImpl extends Activity implements LoginView  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
-
         sharedPrefs = new SharedPrefs(this);
         progressbar = (ProgressBar) findViewById(R.id.progressBar);
-
         login_button = (Button) findViewById(R.id.button1);
         name = (EditText) findViewById(R.id.editText1);
         mobile = (EditText) findViewById(R.id.editText2);
+        dueDate = (EditText) findViewById(R.id.editText3);
         text=(TextView) findViewById(R.id.textView);
         otpButton=(Button) findViewById(R.id.button2);
         otp=(EditText) findViewById(R.id.editText3);
@@ -75,6 +72,7 @@ public class LoginViewImpl extends Activity implements LoginView  {
             public void onClick(View v) {
                 name1 = name.getText().toString();
                 mobile1 = mobile.getText().toString();
+                dueDate1=dueDate.getText().toString();
 
                 Log.d("Response", "b1");
                 if (name1.equals("") || name1.equals(null)) {
@@ -87,33 +85,30 @@ public class LoginViewImpl extends Activity implements LoginView  {
                     mobile.setError("Invalid Mobile No.");
                     mobile.requestFocus();
                 }
+                else if (dueDate1.equals("") || dueDate1.equals(null)) {
+                    dueDate.setError("Please fill mobile");
+                    dueDate.requestFocus();
+                }
+                else {
 
-                if ((name1.equals("") || name1.equals(null)) ||
-                        ((mobile1.equals("") || mobile1.equals(null)) || mobile1.length() != 10)
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            text2.setVisibility(View.VISIBLE);
+                            login_button.setEnabled(false);
 
-                        )
-
-                {
-
-
-                } else {
-
-                    loginScreenPresenter.requestLogin(name1, mobile1, MyApplication.getFcm());
-                    Log.d("response","fcm call");
-
+                        }
+                    },30000);
+                    login_button.setText("resend otp");
+                    loginScreenPresenter.requestLogin(name1, mobile1, MyApplication.getFcm(),dueDate1);
                     sharedPrefs = new SharedPrefs(LoginViewImpl.this);
                     sharedPrefs.setFcm( MyApplication.getFcm());
-
-                        Log.d("response","fcm send");
                 }
 
 
 
             }
         });
-
-
-        Log.d("Response", "6");
 
         otpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,21 +120,6 @@ public class LoginViewImpl extends Activity implements LoginView  {
                 }
                 else{loginScreenPresenter.requestOtp(otp1,mobile1);
                     otpButton.setText("resend otp");
-
-
-
-
-
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            text2.setVisibility(View.VISIBLE);
-                            otpButton.setEnabled(false);
-
-
-                        }
-                    },30000);
-
                 }
             }
         });
@@ -158,26 +138,20 @@ public class LoginViewImpl extends Activity implements LoginView  {
 
     @Override
     public void showMessage(String message) {
-
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-
-
     }
 
     @Override
     public void onLoginVerified() {
-
         text.setVisibility(View.VISIBLE);
         otp.setVisibility(View.VISIBLE);
         otpButton.setVisibility(View.VISIBLE);
-
     }
-
-
    @Override
     public void onOtpVerified() {
-
-
+       Intent intent=new Intent(this, HomePage.class);
+       startActivity(intent);
+       finish();
     }
     @Override
     public void onBackPressed() {
@@ -185,7 +159,6 @@ public class LoginViewImpl extends Activity implements LoginView  {
         Intent intent = new Intent(LoginViewImpl.this, WelcomeScreenActivity.class);
         startActivity(intent);
         finish();
-
     }
 
 }

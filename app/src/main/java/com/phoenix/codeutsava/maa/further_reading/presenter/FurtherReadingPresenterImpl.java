@@ -1,5 +1,7 @@
 package com.phoenix.codeutsava.maa.further_reading.presenter;
 
+import android.util.Log;
+
 import com.phoenix.codeutsava.maa.further_reading.FurtherReadingCallBack;
 import com.phoenix.codeutsava.maa.further_reading.model.FurtherReadingProvider;
 import com.phoenix.codeutsava.maa.further_reading.model.data.FurtherReadingData;
@@ -24,12 +26,14 @@ public class FurtherReadingPresenterImpl implements FurtherReadingPresenter {
         furtherReadingProvider.requestFurtherReading( new FurtherReadingCallBack() {
             @Override
             public void onSuccess(FurtherReadingData furtherReadingData) {
-                if (furtherReadingData.getSuccess()) {
+                if (furtherReadingData.isSuccess()) {
                     furtherReadingView.showLoading(false);
-                    furtherReadingView.onVerified(furtherReadingData.getFurtherReadingDataDetailsList());
+                    furtherReadingView.onVerified(furtherReadingData.getFurtherReadingDataDetails());
+                    Log.d("response","presenter ka  call back success");
                 } else {
                     furtherReadingView.showLoading(false);
                     furtherReadingView.showMessage(furtherReadingData.getMessage());
+                    Log.d("response","presenter ka  call back success ka failure");
                 }
             }
 
@@ -37,7 +41,7 @@ public class FurtherReadingPresenterImpl implements FurtherReadingPresenter {
             public void onFailure(String message) {
                 furtherReadingView.showLoading(false);
                 furtherReadingView.showMessage("Please try again in some time");
-
+                Log.d("response","presenter ka call back  failure");
             }
         });
 

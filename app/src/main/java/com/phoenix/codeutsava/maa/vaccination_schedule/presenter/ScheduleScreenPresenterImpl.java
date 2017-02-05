@@ -26,6 +26,7 @@ public class ScheduleScreenPresenterImpl  implements  ScheduleScreenPresenter{
             public void onSuccess(ScheduleScreenData scheduleScreenData) {
                 if(scheduleScreenData.isSuccess())
                 {
+                    scheduleScreenView.onDataReceived(scheduleScreenData);
                     scheduleScreenView.showLoading(false);
                 }
                 else
