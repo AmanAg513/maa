@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.phoenix.codeutsava.maa.R;
 import com.phoenix.codeutsava.maa.helper.MyApplication;
 import com.phoenix.codeutsava.maa.helper.SharedPrefs;
+import com.phoenix.codeutsava.maa.home.HomePage;
 import com.phoenix.codeutsava.maa.login.model.LoginRetrofitProvider;
 import com.phoenix.codeutsava.maa.login.presenter.LoginPresenter;
 import com.phoenix.codeutsava.maa.login.presenter.LoginPresenterImpl;
@@ -29,14 +30,12 @@ import butterknife.ButterKnife;
  */
 public class LoginViewImpl extends Activity implements LoginView  {
 
-
-
     EditText otp;
     Button otpButton;
     TextView text;
     TextView text2;
     EditText dueDate;
-String dueDate1;
+    String dueDate1;
     String name1;
     EditText name;
     Button login_button;
@@ -50,7 +49,6 @@ String dueDate1;
 
     private SharedPrefs sharedPrefs;
     private ProgressBar progressbar;
-    private LoginRetrofitProvider LoginRetrofitProvider;
     private LoginPresenter loginScreenPresenter;
 
     @Override
@@ -58,11 +56,8 @@ String dueDate1;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
-
         sharedPrefs = new SharedPrefs(this);
         progressbar = (ProgressBar) findViewById(R.id.progressBar);
-
         login_button = (Button) findViewById(R.id.button1);
         name = (EditText) findViewById(R.id.editText1);
         mobile = (EditText) findViewById(R.id.editText2);
@@ -93,39 +88,17 @@ String dueDate1;
                 else if (dueDate1.equals("") || dueDate1.equals(null)) {
                     dueDate.setError("Please fill date");
                     dueDate.requestFocus();
-
                 }
-                if ((name1.equals("") || name1.equals(null)) ||
-                        ((mobile1.equals("") || mobile1.equals(null)) || mobile1.length() != 10)
-
-                        )
-
-                {
-
-
-                } else {
-
-
+                else {
 
                     login_button.setText("resend otp");
                     login_button.setClickable(false);
-
                     loginScreenPresenter.requestLogin(name1, mobile1, MyApplication.getFcm(),dueDate1);
-                    Log.d("response","fcm call");
-
                     sharedPrefs = new SharedPrefs(LoginViewImpl.this);
                     sharedPrefs.setFcm( MyApplication.getFcm());
-
-                        Log.d("response","fcm send");
                 }
-
-
-
-            }
+       }
         });
-
-
-        Log.d("Response", "6");
 
         otpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,13 +110,6 @@ String dueDate1;
                 }
                 else{loginScreenPresenter.requestOtp(otp1,mobile1);
                     otpButton.setText("resend otp");
-
-
-
-
-
-
-
                 }
             }
         });
@@ -162,26 +128,20 @@ String dueDate1;
 
     @Override
     public void showMessage(String message) {
-
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-
-
     }
 
     @Override
     public void onLoginVerified() {
-
         text.setVisibility(View.VISIBLE);
         otp.setVisibility(View.VISIBLE);
         otpButton.setVisibility(View.VISIBLE);
-
     }
-
-
    @Override
     public void onOtpVerified() {
-
-
+       Intent intent=new Intent(this, HomePage.class);
+       startActivity(intent);
+       finish();
     }
     @Override
     public void onBackPressed() {
@@ -189,7 +149,6 @@ String dueDate1;
         Intent intent = new Intent(LoginViewImpl.this, WelcomeScreenActivity.class);
         startActivity(intent);
         finish();
-
     }
 
 }

@@ -4,11 +4,25 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.phoenix.codeutsava.maa.R;
+import com.phoenix.codeutsava.maa.helper.SharedPrefs;
+import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.MockRetrofit;
+import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.RetrofitFirstVaccineProvider;
+import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.data.HomeData;
+import com.phoenix.codeutsava.maa.home_page_vaccines_1.presenter.FirstVaccinePresenter;
+import com.phoenix.codeutsava.maa.home_page_vaccines_1.presenter.FirstVaccinePresenterImpl;
+import com.phoenix.codeutsava.maa.vaccination_schedule.presenter.ScheduleScreenPresenterImpl;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,7 +32,7 @@ import com.phoenix.codeutsava.maa.R;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements HomeView{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,6 +41,18 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    @BindView(R.id.home_recycler)
+    RecyclerView recyclerView;
+    @BindView(R.id.home_progress)
+    ProgressBar progressBar;
+
+    private HomeDetailsListAdapter homeDetailsListAdapter;
+    private FirstVaccinePresenter firstVaccinePresenter;
+    private LinearLayoutManager layoutManager;
+    private SharedPrefs sharedPrefs;
+    private String fcm="";
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,7 +91,10 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view= inflater.inflate(R.layout.fragment_home, container, false);
+        ButterKnife.bind(this,view);
+        initialize();
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -75,21 +104,52 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    void initialize()
+    {
+
+        sharedPrefs = new SharedPrefs(getContext());
+        fcm=sharedPrefs.getAccessToken();
+        homeDetailsListAdapter= new HomeDetailsListAdapter(getContext(), this);
+        layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setHasFixedSize(true);
+//        scheduleScreenPresenter = new ScheduleScreenPresenterImpl(this , new RetrofitScheduleScreenProvider());
+        firstVaccinePresenter=new FirstVaccinePresenterImpl(this,new RetrofitFirstVaccineProvider());
+//        firstVaccinePresenter=new FirstVaccinePresenterImpl(this,new MockRetrofit());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(homeDetailsListAdapter);
+        firstVaccinePresenter.requestHomeData(fcm);
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void showLoading(boolean show) {
+        if(show)
+            progressBar.setVisibility(View.VISIBLE);
+        else
+            progressBar.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showError(String error) {
+
+        Toast.makeText(getContext(), error+"", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDataReceived(HomeData homeData) {
+        homeDetailsListAdapter.setData(homeData.getHomeListDetails());
+        homeDetailsListAdapter.notifyDataSetChanged();
     }
 
     /**

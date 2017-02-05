@@ -6,6 +6,7 @@ import com.phoenix.codeutsava.maa.home_page_vaccines_1.model.data.HomeData;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * Created by aman on 4/2/17.
@@ -14,5 +15,5 @@ import retrofit2.http.GET;
 public interface HomeRequestApi {
 
     @GET(Urls.REQUEST_HOME)
-    Call<HomeData> requestHomeData(@Field("fcm") String fcm);
+    Call<HomeData> requestHomeData(@Query("fcm") String fcm);
 }
